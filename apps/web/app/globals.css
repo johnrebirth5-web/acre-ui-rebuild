@@ -9629,6 +9629,34 @@ a {
   gap: 8px;
 }
 
+.office-report-commission-summary > .office-section-head {
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 14px 18px;
+}
+
+.office-report-commission-summary > .office-section-head .office-section-copy {
+  flex: 1 1 420px;
+}
+
+.office-report-commission-summary > .office-section-head .office-section-actions {
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+.office-report-commission-summary .office-report-stat-strip {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 960px) {
+  .office-report-commission-summary > .office-section-head .office-section-actions {
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-start;
+  }
+}
+
 @media (max-width: 1360px) {
   .office-notification-summary-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));

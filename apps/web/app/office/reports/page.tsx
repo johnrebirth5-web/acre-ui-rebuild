@@ -805,10 +805,10 @@ export default async function OfficeReportsPage(props: ReportsPageProps) {
 
           <section id="reports-commissions">
             <ListPageSection
-              className="office-list-card"
+              className="office-list-card office-report-commission-summary"
               actions={
                 <Link
-                  className="office-button office-button-secondary"
+                  className="office-button office-button-secondary office-button-sm"
                   href={buildAccountingHref(
                     {
                       startDate: snapshot.filters.startDate,
