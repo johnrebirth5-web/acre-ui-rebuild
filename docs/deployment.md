@@ -36,6 +36,26 @@
 - app URL: `http://45.55.247.137`
 - login URL: `http://45.55.247.137/login`
 
+## 隔离的 UI rebuild 部署
+
+为了和现有旧版本隔离，服务器上额外保留了一套并行部署，专门用于 UI rebuild 验收：
+
+- public URL: `http://45.55.247.137:3105`
+- login URL: `http://45.55.247.137:3105/login`
+- app root: `/opt/acre-ui-rebuild/app`
+- app env file: `/etc/acre/acre-ui-rebuild.env`
+- app local env mirror: `/opt/acre-ui-rebuild/app/.env.local`
+- systemd service: `acre-ui-rebuild-web`
+- nginx site config: `/etc/nginx/sites-available/acre-ui-rebuild.conf`
+- nginx listener: `3105`
+- upstream app port: `127.0.0.1:3206`
+
+说明：
+
+- 这套部署与旧版本的 `/opt/acre/app`、`acre-web`、`127.0.0.1:3000` 完全分开
+- 新旧两套实例共用同一台机器与数据库，但目录、systemd 服务和 nginx 入口是隔离的
+- 后续如果继续验收 UI rebuild，默认应更新这套隔离部署，而不是覆盖旧版本
+
 当前已知限制：
 
 - 还没有自定义域名
