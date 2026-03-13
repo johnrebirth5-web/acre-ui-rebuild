@@ -42,8 +42,8 @@
 
 - public URL: `http://45.55.247.137:3105`
 - login URL: `http://45.55.247.137:3105/login`
-- planned custom domain: `http://office.acreny.us`
-- planned custom login URL: `http://office.acreny.us/login`
+- planned custom domain: `http://acresystem.acreny.us`
+- planned custom login URL: `http://acresystem.acreny.us/login`
 - app root: `/opt/acre-ui-rebuild/app`
 - app env file: `/etc/acre/acre-ui-rebuild.env`
 - app local env mirror: `/opt/acre-ui-rebuild/app/.env.local`
@@ -57,7 +57,7 @@
 - 这套部署与旧版本的 `/opt/acre/app`、`acre-web`、`127.0.0.1:3000` 完全分开
 - 新旧两套实例共用同一台机器与数据库，但目录、systemd 服务和 nginx 入口是隔离的
 - 后续如果继续验收 UI rebuild，默认应更新这套隔离部署，而不是覆盖旧版本
-- 自定义域名当前预留为 `office.acreny.us`；DNS 仍需在 Wix 中把 `office` 子域名指向 `45.55.247.137`
+- 自定义域名当前预留为 `acresystem.acreny.us`；DNS 仍需在 Wix 中把 `acresystem` 子域名指向 `45.55.247.137`
 
 当前已知限制：
 
