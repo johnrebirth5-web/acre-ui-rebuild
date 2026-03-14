@@ -67,23 +67,71 @@ select {
   min-height: 100vh;
   display: grid;
   place-items: center;
-  padding: 24px 16px;
+  padding: 28px 20px;
 }
 
-.auth-card {
-  width: min(100%, 620px);
+.auth-frame {
+  width: min(1180px, 100%);
   display: grid;
-  gap: 20px;
-  padding: 28px;
+  grid-template-columns: minmax(0, 1.2fr) minmax(360px, 420px);
+  gap: 22px;
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 32px;
+  background: rgba(247, 250, 254, 0.82);
+  box-shadow: 0 28px 80px rgba(15, 23, 42, 0.12);
+  backdrop-filter: blur(28px);
+}
+
+.auth-hero,
+.auth-panel {
+  display: grid;
+  gap: 22px;
+  min-width: 0;
+  border-radius: 26px;
+}
+
+.auth-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 34px;
+  border: 1px solid rgba(20, 74, 119, 0.12);
+  background:
+    radial-gradient(circle at top right, rgba(59, 130, 246, 0.16), transparent 18rem),
+    radial-gradient(circle at bottom left, rgba(15, 118, 110, 0.12), transparent 20rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(243, 247, 252, 0.94) 100%);
+}
+
+.auth-hero::after {
+  content: "";
+  position: absolute;
+  top: -140px;
+  right: -110px;
+  width: 300px;
+  height: 300px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(20, 74, 119, 0.08) 0%, transparent 72%);
+  pointer-events: none;
+}
+
+.auth-panel {
+  align-content: start;
+  padding: 30px;
   border: 1px solid rgba(24, 36, 51, 0.1);
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   box-shadow: var(--shadow);
 }
 
 .auth-card-copy {
   display: grid;
-  gap: 8px;
+  gap: 10px;
+}
+
+.auth-hero-copy,
+.auth-quick-access,
+.auth-demo-card {
+  display: grid;
+  gap: 14px;
 }
 
 .auth-eyebrow {
@@ -94,20 +142,164 @@ select {
   text-transform: uppercase;
 }
 
-.auth-card h1 {
+.auth-hero-copy h1,
+.auth-card-copy h2 {
   margin: 0;
-  font-size: 2rem;
-  line-height: 1;
+  color: var(--text);
+  letter-spacing: -0.05em;
 }
 
-.auth-card p,
-.auth-demo-card {
+.auth-hero-copy h1 {
+  max-width: 13ch;
+  font-size: clamp(2.8rem, 5vw, 4.3rem);
+  line-height: 0.94;
+}
+
+.auth-card-copy h2 {
+  font-size: 2rem;
+  line-height: 0.98;
+}
+
+.auth-hero-copy p,
+.auth-card-copy p,
+.auth-demo-card,
+.auth-form-helper {
+  margin: 0;
   color: var(--muted);
+  line-height: 1.55;
+}
+
+.auth-hero-metrics,
+.auth-user-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.auth-hero-metrics {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.auth-hero-metric {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  padding: 16px 18px;
+  border: 1px solid rgba(20, 74, 119, 0.08);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.auth-hero-metric-accent {
+  background: linear-gradient(180deg, rgba(231, 240, 255, 0.92) 0%, rgba(244, 248, 255, 0.96) 100%);
+  border-color: rgba(20, 74, 119, 0.14);
+}
+
+.auth-hero-metric span,
+.auth-quick-access-copy strong,
+.auth-user-card-copy span {
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.auth-hero-metric strong {
+  color: var(--text);
+  font-size: 1.35rem;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.auth-hero-metric p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.auth-quick-access {
+  padding: 22px;
+  border: 1px solid rgba(20, 74, 119, 0.1);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.auth-quick-access-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.auth-quick-access-copy strong {
+  color: var(--text);
+  font-size: 0.84rem;
+}
+
+.auth-quick-access-copy p,
+.auth-demo-card-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.auth-user-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.auth-user-card {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid rgba(20, 74, 119, 0.08);
+  border-radius: 20px;
+  background: rgba(248, 251, 255, 0.88);
+}
+
+.auth-user-card-copy {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.auth-user-card-copy strong {
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.15;
+}
+
+.auth-user-card-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.auth-user-card-action {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid rgba(20, 74, 119, 0.12);
+  border-radius: 14px;
+  background: #ffffff;
+  color: var(--text);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease, transform 120ms ease;
+}
+
+.auth-user-card-action:hover,
+.auth-user-card-action:focus-visible {
+  border-color: rgba(20, 74, 119, 0.18);
+  background: rgba(231, 240, 255, 0.7);
+  color: var(--accent);
+  transform: translateY(-1px);
 }
 
 .auth-form {
   display: grid;
-  gap: 14px;
+  gap: 16px;
 }
 
 .auth-field {
@@ -125,9 +317,9 @@ select {
   width: 100%;
   height: 46px;
   padding: 0 14px;
-  border: 1px solid rgba(24, 36, 51, 0.14);
+  border: 1px solid rgba(24, 36, 51, 0.12);
   border-radius: 12px;
-  background: #ffffff;
+  background: rgba(248, 250, 252, 0.92);
   color: var(--text);
 }
 
@@ -138,13 +330,21 @@ select {
 }
 
 .auth-submit {
-  min-height: 42px;
-  padding: 0 18px;
+  min-height: 46px;
+  padding: 0 22px;
   border: 0;
-  border-radius: 12px;
-  background: #0d2e74;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #173f8d 0%, #12306b 100%);
   color: #ffffff;
   font-weight: 700;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.auth-submit:hover,
+.auth-submit:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(18, 48, 107, 0.2);
 }
 
 .auth-error {
@@ -153,17 +353,26 @@ select {
   font-size: 0.84rem;
 }
 
+.auth-form-helper {
+  font-size: 0.84rem;
+}
+
 .auth-demo-card {
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid rgba(20, 74, 119, 0.1);
+  border-radius: 20px;
+  background: rgba(244, 248, 255, 0.72);
+}
+
+.auth-demo-card-copy {
   display: grid;
-  gap: 10px;
-  padding: 16px;
-  border-radius: 16px;
-  background: rgba(20, 74, 119, 0.06);
+  gap: 6px;
 }
 
 .auth-demo-card strong {
   color: var(--text);
-  font-size: 0.92rem;
+  font-size: 0.94rem;
 }
 
 .auth-demo-card ul {
@@ -184,6 +393,47 @@ select {
 
 .auth-demo-card code {
   font-family: "SFMono-Regular", Menlo, monospace;
+  color: var(--accent);
+  font-size: 0.82rem;
+}
+
+@media (max-width: 980px) {
+  .auth-frame {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-hero,
+  .auth-panel {
+    padding: 28px;
+  }
+
+  .auth-hero-copy h1 {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .auth-shell {
+    padding: 16px;
+  }
+
+  .auth-frame,
+  .auth-hero-metrics,
+  .auth-user-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-frame,
+  .auth-hero,
+  .auth-panel,
+  .auth-quick-access {
+    padding: 18px;
+  }
+
+  .auth-demo-card li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .site-release-badge {
@@ -4790,11 +5040,14 @@ a {
 }
 
 .office-dashboard-main {
-  padding: 18px 20px 84px;
+  padding: 22px 24px 88px;
+  background:
+    radial-gradient(circle at top left, rgba(20, 74, 119, 0.08), transparent 24rem),
+    linear-gradient(180deg, #f5f8fc 0%, #edf2f8 100%);
 }
 
 .office-dashboard-sidebar {
-  background: #f5f7fa;
+  background: linear-gradient(180deg, #f8fafd 0%, #f1f5fa 100%);
   border-right: 1px solid var(--office-border);
 }
 
@@ -6655,7 +6908,306 @@ a {
 }
 
 .office-dashboard-goal-card {
+  gap: 18px;
   background: linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%);
+}
+
+.office-dashboard-overview {
+  display: grid;
+  gap: 16px;
+}
+
+.office-dashboard-overview-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.office-dashboard-access-panel,
+.office-dashboard-highlight-card,
+.office-dashboard-chart-card,
+.office-dashboard-progress-card {
+  border: 1px solid var(--office-border);
+  border-radius: 18px;
+}
+
+.office-dashboard-access-panel {
+  display: grid;
+  gap: 6px;
+  padding: 18px 20px;
+  background: linear-gradient(180deg, rgba(247, 250, 255, 0.92) 0%, rgba(241, 246, 252, 0.96) 100%);
+}
+
+.office-dashboard-access-panel > span,
+.office-dashboard-chart-copy > span,
+.office-dashboard-highlight-card > span,
+.office-dashboard-progress-ring-inner span {
+  color: var(--office-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.office-dashboard-access-panel strong,
+.office-dashboard-chart-copy strong {
+  color: var(--office-text);
+  font-size: 1.18rem;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.office-dashboard-access-panel p,
+.office-dashboard-chart-copy p,
+.office-dashboard-highlight-card p,
+.office-dashboard-progress-note {
+  margin: 0;
+  color: var(--office-text-muted);
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.office-dashboard-highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.office-dashboard-highlight-card {
+  display: grid;
+  gap: 6px;
+  padding: 18px;
+  background: rgba(248, 250, 252, 0.92);
+}
+
+.office-dashboard-highlight-card-accent {
+  border-color: rgba(20, 74, 119, 0.14);
+  background: linear-gradient(180deg, #eef4ff 0%, #f6f9ff 100%);
+}
+
+.office-dashboard-highlight-card strong {
+  color: var(--office-text);
+  font-size: 1.9rem;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.office-dashboard-status-strip {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.office-dashboard-status-card {
+  min-height: 110px;
+}
+
+.office-dashboard-chart-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 320px);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.office-dashboard-chart-card,
+.office-dashboard-progress-card {
+  padding: 18px;
+  background: rgba(250, 252, 255, 0.92);
+}
+
+.office-dashboard-chart-card {
+  display: grid;
+  gap: 18px;
+}
+
+.office-dashboard-chart-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.office-dashboard-chart-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.office-dashboard-chart-grid {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 10px;
+}
+
+.office-dashboard-chart-axis {
+  display: grid;
+  align-content: start;
+  gap: 9px;
+  padding-top: 10px;
+  color: var(--office-text-soft);
+  font-size: 0.67rem;
+  text-align: right;
+}
+
+.office-dashboard-chart-shell {
+  min-height: 312px;
+  overflow: hidden;
+}
+
+.office-dashboard-chart-canvas {
+  position: relative;
+  min-height: 312px;
+}
+
+.office-dashboard-chart-bars {
+  position: absolute;
+  inset: 12px 0 50px 0;
+  display: grid;
+  grid-template-columns: repeat(13, minmax(0, 1fr));
+  gap: 10px;
+  align-items: end;
+  border-bottom: 1px solid #d6e0ee;
+}
+
+.office-dashboard-chart-slot {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+
+.office-dashboard-chart-bar {
+  width: min(26px, 100%);
+  min-height: 0;
+  border-radius: 10px 10px 0 0;
+  background: linear-gradient(180deg, #1d4f97 0%, #143975 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.office-dashboard-chart-bar.is-empty {
+  height: 0 !important;
+}
+
+.office-dashboard-chart-months {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: grid;
+  grid-template-columns: repeat(13, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.office-dashboard-chart-months span {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  min-width: 0;
+  padding-top: 14px;
+  text-align: center;
+}
+
+.office-dashboard-chart-months span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 8px;
+  background: #d6e0ee;
+  transform: translateX(-50%);
+}
+
+.office-dashboard-chart-month-label,
+.office-dashboard-chart-year-label {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.office-dashboard-chart-month-label {
+  color: var(--office-text);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.office-dashboard-chart-year-label {
+  color: var(--office-text-soft);
+  font-size: 0.62rem;
+}
+
+.office-dashboard-chart-year-label.is-placeholder {
+  visibility: hidden;
+}
+
+.office-dashboard-progress-card {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+  background: linear-gradient(180deg, #f7faff 0%, #f1f5fb 100%);
+}
+
+.office-dashboard-progress-ring {
+  position: relative;
+  width: min(100%, 220px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border-radius: 999px;
+}
+
+.office-dashboard-progress-ring::after {
+  content: "";
+  position: absolute;
+  inset: 24px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: inset 0 0 0 1px rgba(20, 74, 119, 0.06);
+}
+
+.office-dashboard-progress-ring-inner {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.office-dashboard-progress-ring-inner strong {
+  color: var(--office-text);
+  font-size: 2.6rem;
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+}
+
+.office-dashboard-progress-ring-inner p {
+  margin: 0;
+  color: var(--office-text-muted);
+  font-size: 0.8rem;
+}
+
+.office-dashboard-progress-meta {
+  display: grid;
+  gap: 10px;
+}
+
+.office-dashboard-progress-meta .office-secondary-meta-row {
+  padding: 12px 14px;
+  border: 1px solid rgba(20, 74, 119, 0.08);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.office-dashboard-progress-note strong {
+  color: var(--office-text);
+}
+
+.office-dashboard-transactions-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
 }
 
 .office-dashboard-transactions-table {
@@ -6712,6 +7264,28 @@ a {
 
 .office-dashboard-transactions-owner {
   color: var(--office-text-muted);
+}
+
+@media (max-width: 1120px) {
+  .office-dashboard-overview-top,
+  .office-dashboard-chart-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .office-dashboard-highlight-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .office-dashboard-chart-grid {
+    grid-template-columns: 48px minmax(0, 1fr);
+  }
+
+  .office-dashboard-transactions-head,
+  .office-dashboard-transactions-row {
+    min-width: 760px;
+  }
 }
 
 .office-list-footer,
