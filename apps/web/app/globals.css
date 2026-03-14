@@ -8640,13 +8640,12 @@ a {
   }
 
   .office-mobile-rail {
-    position: sticky;
-    bottom: 0;
-    z-index: 20;
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(78px, max-content);
-    justify-content: start;
+    position: fixed;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    z-index: 30;
+    display: flex;
     gap: 8px;
     overflow-x: auto;
     padding: 10px;
@@ -8665,10 +8664,12 @@ a {
   .office-mobile-rail a,
   .office-mobile-rail span {
     display: inline-flex;
+    flex: 0 0 auto;
     align-items: center;
     justify-content: center;
     min-height: 40px;
-    padding: 0 12px;
+    min-width: 74px;
+    padding: 0 14px;
     border-radius: 14px;
     white-space: nowrap;
   }
@@ -8952,6 +8953,380 @@ a {
 
 .office-settings-item-delete {
   justify-self: end;
+}
+
+.office-transactions-list-page .office-list-filters {
+  grid-template-columns: minmax(240px, 1.5fr) repeat(4, minmax(150px, 0.9fr)) minmax(132px, 0.82fr) minmax(132px, 0.82fr) auto;
+}
+
+.office-transactions-list-page .office-list-page-header-actions,
+.office-contact-detail-header-actions,
+.office-transaction-detail-header-actions,
+.office-new-transaction-header-actions {
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.office-transactions-table-card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.office-list-table-header-transactions,
+.office-list-table-row-transactions {
+  grid-template-columns:
+    minmax(280px, 2.6fr)
+    minmax(110px, 0.9fr)
+    minmax(132px, 0.96fr)
+    minmax(118px, 0.88fr)
+    minmax(118px, 0.84fr)
+    minmax(138px, 0.9fr);
+}
+
+.office-list-table-row-transactions {
+  min-height: 72px;
+}
+
+.office-transactions-row-head {
+  gap: 6px;
+}
+
+.office-transactions-row-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.office-transactions-row-head p {
+  margin: 0;
+  color: var(--office-text-muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.office-transactions-flag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0 8px;
+  border: 1px solid color-mix(in srgb, var(--office-warning) 30%, #ffffff);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--office-warning) 12%, #ffffff);
+  color: color-mix(in srgb, var(--office-warning) 68%, #4b4b4b);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.office-transactions-modal {
+  width: min(1080px, calc(100vw - 28px));
+  max-height: calc(100vh - 32px);
+  border-radius: 14px;
+  border-color: color-mix(in srgb, var(--office-border) 90%, #ffffff);
+  background:
+    linear-gradient(180deg, rgba(255, 252, 248, 0.98) 0%, rgba(248, 243, 236, 0.98) 100%);
+  box-shadow: 0 30px 90px rgba(49, 44, 38, 0.14);
+}
+
+.office-transactions-modal .bm-transaction-modal-header {
+  align-items: center;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--office-border);
+}
+
+.office-transactions-modal .bm-transaction-modal-header h3 {
+  text-transform: none;
+  letter-spacing: -0.03em;
+}
+
+.office-transactions-modal .bm-transaction-modal-section-header {
+  align-items: center;
+}
+
+.office-transactions-modal .bm-transaction-modal-section-header strong {
+  color: var(--office-text);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.office-transactions-modal .bm-transaction-modal-section-header span {
+  color: var(--office-text-muted);
+  font-size: 0.78rem;
+}
+
+.office-detail-anchor-nav {
+  position: sticky;
+  top: 12px;
+  z-index: 4;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--office-border);
+  border-radius: 12px;
+  background: rgba(255, 252, 248, 0.92);
+  backdrop-filter: blur(16px);
+}
+
+.office-detail-anchor-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--office-text-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.office-detail-anchor-nav a:hover,
+.office-detail-anchor-nav a:focus-visible {
+  border-color: var(--office-border);
+  background: var(--office-surface-subtle);
+  color: var(--office-text);
+}
+
+.office-transaction-detail-summary,
+.office-contact-detail-summary,
+.office-new-transaction-summary {
+  justify-content: flex-end;
+}
+
+.office-transaction-detail-page,
+.office-contact-detail-page,
+.office-new-transaction-page {
+  gap: 18px;
+}
+
+.office-transaction-detail-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.92fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.office-transaction-detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.92fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.office-transaction-detail-main,
+.office-transaction-detail-sidebar,
+.office-transaction-detail-documents,
+.office-contact-detail-main,
+.office-contact-detail-sidebar {
+  display: grid;
+  gap: 18px;
+}
+
+.office-transaction-detail-status-stack {
+  display: grid;
+  gap: 16px;
+}
+
+.office-transaction-detail-status-meta {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.office-contact-detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.95fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.office-contact-linked-list,
+.office-contact-task-list {
+  display: grid;
+  gap: 12px;
+}
+
+.office-contact-linked-item,
+.office-contact-task-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid var(--office-border);
+  border-radius: 12px;
+  background: var(--office-surface-subtle);
+}
+
+.office-contact-linked-item strong,
+.office-contact-task-item strong {
+  display: block;
+  color: var(--office-text);
+  font-size: 0.94rem;
+  line-height: 1.25;
+}
+
+.office-contact-linked-item p,
+.office-contact-task-item p,
+.office-contact-linked-meta span {
+  margin: 4px 0 0;
+  color: var(--office-text-muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.office-contact-linked-meta {
+  display: grid;
+  justify-items: end;
+  gap: 4px;
+  text-align: right;
+}
+
+.office-contact-linked-meta strong,
+.office-contact-task-item > span {
+  color: var(--office-text);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.office-contact-task-create,
+.office-contact-link-form {
+  margin-top: 2px;
+}
+
+.office-contact-task-create > :first-child,
+.office-contact-link-form > :first-child {
+  flex: 1 1 220px;
+}
+
+.office-new-transaction-grid {
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.9fr);
+}
+
+.office-new-transaction-card {
+  border-color: var(--office-border);
+  border-radius: 12px;
+  background: var(--office-surface-strong);
+}
+
+.office-new-transaction-card .office-section-body {
+  gap: 14px;
+}
+
+.office-new-transaction-page .bm-form-field span {
+  color: var(--office-text-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.office-new-transaction-page .bm-form-field input,
+.office-new-transaction-page .bm-form-field textarea,
+.office-agent-profile-page .office-form-field input,
+.office-agent-profile-page .office-form-field textarea,
+.office-account-page .office-form-field input,
+.office-account-page .office-form-field textarea,
+.office-billing-page .office-form-field input,
+.office-billing-page .office-form-field textarea {
+  border-color: var(--office-border);
+  border-radius: 10px;
+  background: rgba(255, 252, 248, 0.96);
+}
+
+.office-new-transaction-page .bm-commission-item,
+.office-new-transaction-page .bm-rule-item {
+  border-color: var(--office-border);
+  border-radius: 12px;
+  background: var(--office-surface-subtle);
+}
+
+.office-agent-profile-page .office-section-card,
+.office-account-page .office-section-card,
+.office-billing-page .office-section-card,
+.office-accounting-list-page .office-section-card,
+.office-library-page .office-section-card {
+  border-radius: 12px;
+}
+
+.office-account-page .office-account-summary-grid,
+.office-billing-page .office-billing-summary-grid,
+.office-agent-profile-page .office-agents-kpi-grid {
+  gap: 12px;
+}
+
+.office-agent-profile-page .office-note-item,
+.office-account-page .office-account-team-card,
+.office-billing-page .office-billing-notice,
+.office-library-page .office-note-item {
+  border-radius: 12px;
+}
+
+@media (max-width: 1120px) {
+  .office-transaction-detail-hero,
+  .office-transaction-detail-layout,
+  .office-contact-detail-layout,
+  .office-new-transaction-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .office-transaction-detail-summary,
+  .office-contact-detail-summary,
+  .office-new-transaction-summary {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 760px) {
+  .office-transactions-list-page .office-list-filters,
+  .office-transaction-detail-status-meta,
+  .office-contact-detail-meta,
+  .bm-transaction-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .office-detail-anchor-nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+  }
+
+  .office-detail-anchor-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .office-transaction-detail-summary .office-summary-chip,
+  .office-contact-detail-summary .office-summary-chip,
+  .office-new-transaction-summary .office-summary-chip,
+  .office-transactions-page-actions .office-summary-chip {
+    min-width: 0;
+  }
+
+  .office-contact-linked-item,
+  .office-contact-task-item,
+  .bm-commission-item,
+  .bm-rule-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .office-contact-linked-meta {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .office-new-transaction-page .bm-form-field-wide {
+    grid-column: auto;
+  }
+
+  .office-new-transaction-page .office-page-actions,
+  .office-contact-detail-page .office-page-actions,
+  .office-transaction-detail-page .office-page-actions {
+    width: 100%;
+  }
 }
 
 .office-account-page {

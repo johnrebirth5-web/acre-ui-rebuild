@@ -546,6 +546,7 @@ export function TransactionsClient({
   const transactionSummary = (
     <>
       <SummaryChip label="Transactions" value={summary.totalCount} />
+      <SummaryChip label="Current view" value={statusFilter === "All" ? "All statuses" : statusFilter} />
       <SummaryChip label="My net income" tone="accent" value={summary.totalNetIncome} />
       <Button className="office-list-page-primary-action bm-transactions-create" onClick={() => setIsModalOpen(true)} type="button">
         Create transaction
@@ -556,7 +557,7 @@ export function TransactionsClient({
   return (
     <>
       <OfficeListPage
-        className="bm-transactions-page"
+        className="bm-transactions-page office-transactions-list-page"
         description="Operational transaction list with query-param filters for status, owner, team, type, and date-window drill-down."
         eyebrow="Transactions"
         filters={transactionFilters}
@@ -567,9 +568,8 @@ export function TransactionsClient({
         summaryClassName="office-transactions-page-actions"
         title="Transactions"
       >
-        <DataTable className="office-list-table bm-transactions-list-shell">
+        <DataTable className="office-list-table bm-transactions-list-shell office-transactions-table-card">
           <DataTableHeader className="office-list-table-header office-list-table-header-transactions">
-            <span />
             <span>Transaction</span>
             <span>Price</span>
             <span>Owner</span>
@@ -581,11 +581,24 @@ export function TransactionsClient({
           <DataTableBody className="office-list-table-body">
             {transactions.map((transaction) => (
               <DataTableRow className="office-list-table-row office-list-table-row-transactions" key={transaction.id}>
-                <span className={`bm-transaction-home-icon${transaction.isFlagged ? " is-flagged" : ""}`}>⌂</span>
-                <div className="office-list-table-main">
-                  <strong className={transaction.isFlagged ? "is-flagged" : ""}>
-                    <Link href={`/office/transactions/${transaction.id}`}>{transaction.address}</Link>
-                  </strong>
+                <div className="office-list-table-main office-transactions-row-head">
+                  <div className="office-transactions-row-title">
+                    <strong className={transaction.isFlagged ? "is-flagged" : ""}>
+                      <Link href={`/office/transactions/${transaction.id}`}>{transaction.address}</Link>
+                    </strong>
+                    {transaction.isFlagged ? <span className="office-transactions-flag">Flagged</span> : null}
+                  </div>
+                  <p>
+                    {transaction.status === "Opportunity"
+                      ? "Early-stage pipeline item."
+                      : transaction.status === "Active"
+                        ? "Live transaction workflow in motion."
+                        : transaction.status === "Pending"
+                          ? "Awaiting closing and documentation steps."
+                          : transaction.status === "Closed"
+                            ? "Closed transaction record."
+                            : "Removed from the active pipeline."}
+                  </p>
                 </div>
                 <span>{transaction.price}</span>
                 <span>{transaction.owner}</span>
@@ -609,9 +622,9 @@ export function TransactionsClient({
 
       {isModalOpen ? (
         <div className="bm-modal-overlay" onClick={() => setIsModalOpen(false)}>
-          <section className="bm-transaction-modal" onClick={(event) => event.stopPropagation()}>
+          <section className="bm-transaction-modal office-transactions-modal" onClick={(event) => event.stopPropagation()}>
             <header className="bm-transaction-modal-header">
-              <h3>NEW TRANSACTION</h3>
+              <h3>Create transaction</h3>
               <button aria-label="Close create transaction modal" onClick={() => setIsModalOpen(false)} type="button">
                 ×
               </button>
@@ -635,8 +648,8 @@ export function TransactionsClient({
 
               <section className="bm-transaction-modal-additional">
                 <header className="bm-transaction-modal-section-header">
-                  <button type="button">Additional fields</button>
-                  <span>configure</span>
+                  <strong>Additional fields</strong>
+                  <span>Optional office metadata</span>
                 </header>
 
                 <div className="bm-transaction-modal-grid bm-transaction-modal-grid-additional">
@@ -661,7 +674,7 @@ export function TransactionsClient({
               </section>
 
               <footer className="bm-transaction-modal-footer">
-                <span>step 1 of 4</span>
+                <span>Office intake draft</span>
                 <div className="bm-transaction-modal-actions">
                   {submitError ? <p className="bm-transaction-submit-error">{submitError}</p> : null}
                   <button className="bm-transaction-next" disabled={isSubmitting} type="submit">

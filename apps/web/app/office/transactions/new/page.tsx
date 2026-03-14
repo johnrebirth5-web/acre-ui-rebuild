@@ -1,27 +1,32 @@
 import Link from "next/link";
-import { Button, PageHeader, PageShell, SectionCard } from "@acre/ui";
+import { Button, PageHeader, PageHeaderSummary, PageShell, SectionCard, SummaryChip } from "@acre/ui";
 import { getCreateTransactionDraft } from "@acre/backoffice";
 
 export default function OfficeTransactionCreatePage() {
   const draft = getCreateTransactionDraft();
 
   return (
-    <PageShell className="bm-new-transaction-page">
+    <PageShell className="bm-new-transaction-page office-detail-page office-new-transaction-page">
       <PageHeader
         actions={
-          <>
+          <div className="office-new-transaction-header-actions">
+            <PageHeaderSummary className="office-new-transaction-summary">
+              <SummaryChip label="Workflow" value="Intake draft" />
+              <SummaryChip label="Participants" tone="accent" value={draft.participants.length} />
+              <SummaryChip label="Referral rules" value={draft.referralRules.length} />
+            </PageHeaderSummary>
             <Link className="office-button office-button-secondary" href="/office/transactions">
               Back to transactions
             </Link>
             <Button type="button">Save draft</Button>
-          </>
+          </div>
         }
-        description="Static transaction intake form based on the Agent CRM referral tutorial. Save is not implemented yet."
+        description="Static transaction intake draft based on the Agent CRM referral tutorial. This page is still read-only, but the layout now matches the rest of the office detail workflow."
         title="New transaction"
       />
 
-      <section className="bm-new-transaction-grid">
-        <SectionCard className="bm-new-transaction-card" title="Transaction details">
+      <section className="bm-new-transaction-grid office-new-transaction-grid">
+        <SectionCard className="bm-new-transaction-card office-new-transaction-card" title="Transaction details">
           <div className="bm-transaction-form-grid">
             <label className="bm-form-field">
               <span>Transaction type</span>
@@ -70,7 +75,7 @@ export default function OfficeTransactionCreatePage() {
           </div>
         </SectionCard>
 
-        <SectionCard className="bm-new-transaction-card" title="Additional fields">
+        <SectionCard className="bm-new-transaction-card office-new-transaction-card" title="Additional fields">
           <div className="bm-transaction-form-grid">
             <label className="bm-form-field">
               <span>Agent name</span>
@@ -112,8 +117,8 @@ export default function OfficeTransactionCreatePage() {
         </SectionCard>
       </section>
 
-      <section className="bm-new-transaction-grid">
-        <SectionCard className="bm-new-transaction-card" title="Agent / commission participants">
+      <section className="bm-new-transaction-grid office-new-transaction-grid">
+        <SectionCard className="bm-new-transaction-card office-new-transaction-card" title="Agent / commission participants">
           <div className="bm-commission-list">
             {draft.participants.map((participant) => (
               <article className="bm-commission-item" key={participant.id}>
@@ -130,7 +135,7 @@ export default function OfficeTransactionCreatePage() {
           </div>
         </SectionCard>
 
-        <SectionCard className="bm-new-transaction-card" title="Referral rules from Agent CRM tutorial">
+        <SectionCard className="bm-new-transaction-card office-new-transaction-card" title="Referral rules from Agent CRM tutorial">
           <div className="bm-rule-list">
             {draft.referralRules.map((rule) => (
               <article className="bm-rule-item" key={rule}>

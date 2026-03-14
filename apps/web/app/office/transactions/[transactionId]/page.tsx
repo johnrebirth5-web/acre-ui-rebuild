@@ -24,7 +24,7 @@ import {
   canViewOfficeDocuments,
   canViewOfficeOffers
 } from "@acre/auth";
-import { DetailSection, PageHeader, PageShell, SectionCard, SecondaryMetaList } from "@acre/ui";
+import { PageHeader, PageHeaderSummary, PageShell, SectionCard, SummaryChip } from "@acre/ui";
 import { notFound } from "next/navigation";
 import { requireOfficeSession } from "../../../../lib/auth-session";
 import { TransactionContactsCard } from "./contacts-card";
@@ -80,188 +80,236 @@ export default async function OfficeTransactionDetailPage({ params }: Transactio
   const canApproveCommissionsForRole = canApproveOfficeCommissions(context.currentMembership.role);
 
   return (
-    <PageShell className="bm-transaction-detail-page office-detail-page">
+    <PageShell className="bm-transaction-detail-page office-detail-page office-transaction-detail-page">
       <PageHeader
         actions={
-          <Link className="office-button office-button-secondary" href="/office/transactions">
-            Back to transactions
-          </Link>
+          <div className="office-transaction-detail-header-actions">
+            <PageHeaderSummary className="office-transaction-detail-summary">
+              <SummaryChip label="Status" tone={transaction.status === "Active" || transaction.status === "Pending" ? "accent" : "default"} value={transaction.status} />
+              <SummaryChip label="Owner" value={transaction.ownerName} />
+              <SummaryChip label="Office" value={transaction.officeName || "Unassigned"} />
+              <SummaryChip label="Price" value={transaction.price || "$0"} />
+            </PageHeaderSummary>
+            <Link className="office-button office-button-secondary" href="/office/transactions">
+              Back to transactions
+            </Link>
+          </div>
         }
         description={`${transaction.address}, ${transaction.city}, ${transaction.state} ${transaction.zipCode}`}
         eyebrow="Transaction detail"
         title={transaction.title}
       />
 
-      <DetailSection
-        actions={
-          <SecondaryMetaList
-            items={[
-              { label: "Owner", value: transaction.ownerName },
-              { label: "Office", value: transaction.officeName || "Unassigned" },
-              { label: "Status", value: transaction.status }
-            ]}
-          />
-        }
-        subtitle="Core transaction facts, dates, and referral context."
-        title="Overview"
-      >
-        <div className="office-detail-grid">
-          <div className="office-detail-field">
-            <span>Type</span>
-            <strong>{transaction.type}</strong>
-          </div>
-          <div className="office-detail-field">
-            <span>Representing</span>
-            <strong>{transaction.representing}</strong>
-          </div>
-          <div className="office-detail-field">
-            <span>Price</span>
-            <strong>{transaction.price ? `$${Number(transaction.price).toLocaleString("en-US")}` : "$0"}</strong>
-          </div>
-          <div className="office-detail-field">
-            <span>Owner</span>
-            <strong>{transaction.ownerName}</strong>
-          </div>
-          <div className="office-detail-field">
-            <span>Office</span>
-            <strong>{transaction.officeName || "Unassigned"}</strong>
-          </div>
-          <div className="office-detail-field">
-            <span>Company referral</span>
-            <strong>{transaction.companyReferral}</strong>
-          </div>
-          <div className="office-detail-field">
-            <span>Referral employee</span>
-            <strong>{transaction.companyReferralEmployeeName || "None"}</strong>
-          </div>
-          <div className="office-detail-field">
-            <span>Important date</span>
-            <strong>{transaction.importantDate || "Not set"}</strong>
-          </div>
-          <div className="office-detail-field">
-            <span>Buyer agreement date</span>
-            <strong>{transaction.buyerAgreementDate || "Not set"}</strong>
-          </div>
-          <div className="office-detail-field">
-            <span>Buyer expiration date</span>
-            <strong>{transaction.buyerExpirationDate || "Not set"}</strong>
-          </div>
-          <div className="office-detail-field">
-            <span>Acceptance date</span>
-            <strong>{transaction.acceptanceDate || "Not set"}</strong>
-          </div>
-          <div className="office-detail-field">
-            <span>Closing date</span>
-            <strong>{transaction.closingDate || "Not set"}</strong>
-          </div>
-        </div>
-      </DetailSection>
+      <nav aria-label="Transaction sections" className="office-detail-anchor-nav office-transaction-detail-nav">
+        <a href="#overview">Overview</a>
+        <a href="#status">Status</a>
+        <a href="#contacts">Contacts</a>
+        {canViewOffersForRole ? <a href="#offers">Offers</a> : null}
+        <a href="#tasks">Tasks</a>
+        <a href="#documents">Documents</a>
+        <a href="#forms">Forms</a>
+        <a href="#updates">Updates</a>
+        <a href="#finance">Finance</a>
+        {canViewCommissionsForRole && commissionSnapshot ? <a href="#commissions">Commissions</a> : null}
+        <a href="#fields">Fields</a>
+      </nav>
 
-      <SectionCard subtitle="Update the primary workflow status for this transaction." title="Status">
-        <TransactionStatusForm currentStatus={transaction.status} transactionId={transaction.id} />
-      </SectionCard>
-
-      <TransactionContactsCard
-        availableContacts={transaction.availableContacts}
-        contacts={transaction.contacts}
-        transactionId={transaction.id}
-      />
-
-      {canViewOffersForRole ? (
-        <TransactionOffersCard
-          canAcceptOffers={canAcceptOffersForRole}
-          canManageDocuments={canManageDocumentsForRole}
-          canManageOffers={canManageOffersForRole}
-          canManageSignatures={canManageSignaturesForRole}
-          canReviewOffers={canReviewOffersForRole}
-          canUseForms={canUseFormsForRole}
-          formTemplates={transaction.formTemplates}
-          snapshot={offersSnapshot}
-          taskOptions={taskOptions}
-          transactionId={transaction.id}
-        />
-      ) : null}
-
-      <TransactionTasksCard
-        assigneeOptions={taskAssigneeOptions}
-        canApproveDocuments={canApproveDocumentsForRole}
-        currentMembershipId={context.currentMembership.id}
-        canReviewTasks={canReviewTasksForRole}
-        canSecondaryReviewTasks={canSecondaryReviewTasksForRole}
-        tasks={tasks}
-        transactionId={transaction.id}
-      />
-
-      <TransactionDocumentsCard
-        canManageDocuments={canManageDocumentsForRole}
-        canViewDocuments={canViewDocumentsForRole}
-        documents={transaction.documents}
-        taskOptions={taskOptions}
-        transactionId={transaction.id}
-      />
-
-      <TransactionUnsortedDocumentsCard
-        canManageDocuments={canManageDocumentsForRole}
-        canViewDocuments={canViewDocumentsForRole}
-        documents={transaction.documents}
-        taskOptions={taskOptions}
-        transactionId={transaction.id}
-      />
-
-      <TransactionFormsSignaturesCard
-        canManageSignatures={canManageSignaturesForRole}
-        canUseForms={canUseFormsForRole}
-        canViewDocuments={canViewDocumentsForRole}
-        formTemplates={transaction.formTemplates}
-        forms={transaction.forms}
-        taskOptions={taskOptions}
-        transactionId={transaction.id}
-      />
-
-      <TransactionIncomingUpdatesCard
-        canReviewIncomingUpdates={canReviewIncomingUpdatesForRole}
-        incomingUpdates={transaction.incomingUpdates}
-        transactionId={transaction.id}
-      />
-
-      <SectionCard subtitle="Minimal finance layer for commissions, office net, and notes." title="Finance">
-        <TransactionFinanceForm
-          agentNet={transaction.agentNet}
-          financeNotes={transaction.financeNotes}
-          grossCommission={transaction.grossCommission}
-          officeNet={transaction.officeNet}
-          referralFee={transaction.referralFee}
-          transactionId={transaction.id}
-        />
-      </SectionCard>
-
-      {canViewCommissionsForRole && commissionSnapshot ? (
-        <TransactionCommissionCard
-          canApproveCommissions={canApproveCommissionsForRole}
-          canCalculateCommissions={canCalculateCommissionsForRole}
-          canManageCommissions={canManageCommissionsForRole}
-          snapshot={commissionSnapshot}
-          transactionId={transaction.id}
-        />
-      ) : null}
-
-      <SectionCard subtitle="Additional custom fields stored with this transaction." title="Additional fields">
-        <div className="office-detail-grid">
-          {Object.entries(transaction.additionalFields).length > 0 ? (
-            Object.entries(transaction.additionalFields).map(([key, value]) => (
-              <div className="office-detail-field" key={key}>
-                <span>{key}</span>
-                <strong>{value || "—"}</strong>
-              </div>
-            ))
-          ) : (
+      <div className="office-transaction-detail-hero">
+        <SectionCard id="overview" subtitle="Core transaction facts, dates, and referral context." title="Overview">
+          <div className="office-detail-grid">
             <div className="office-detail-field">
-              <span>Fields</span>
-              <strong>No additional fields saved.</strong>
+              <span>Type</span>
+              <strong>{transaction.type}</strong>
             </div>
-          )}
+            <div className="office-detail-field">
+              <span>Representing</span>
+              <strong>{transaction.representing}</strong>
+            </div>
+            <div className="office-detail-field">
+              <span>Price</span>
+              <strong>{transaction.price || "$0"}</strong>
+            </div>
+            <div className="office-detail-field">
+              <span>Important date</span>
+              <strong>{transaction.importantDate || "Not set"}</strong>
+            </div>
+            <div className="office-detail-field">
+              <span>Buyer agreement date</span>
+              <strong>{transaction.buyerAgreementDate || "Not set"}</strong>
+            </div>
+            <div className="office-detail-field">
+              <span>Buyer expiration date</span>
+              <strong>{transaction.buyerExpirationDate || "Not set"}</strong>
+            </div>
+            <div className="office-detail-field">
+              <span>Acceptance date</span>
+              <strong>{transaction.acceptanceDate || "Not set"}</strong>
+            </div>
+            <div className="office-detail-field">
+              <span>Closing date</span>
+              <strong>{transaction.closingDate || "Not set"}</strong>
+            </div>
+            <div className="office-detail-field">
+              <span>Company referral</span>
+              <strong>{transaction.companyReferral}</strong>
+            </div>
+            <div className="office-detail-field">
+              <span>Referral employee</span>
+              <strong>{transaction.companyReferralEmployeeName || "None"}</strong>
+            </div>
+          </div>
+        </SectionCard>
+
+        <SectionCard id="status" subtitle="Update the primary workflow status and keep the audit context close at hand." title="Status">
+          <div className="office-transaction-detail-status-stack">
+            <TransactionStatusForm currentStatus={transaction.status} transactionId={transaction.id} />
+            <div className="office-secondary-meta-list office-transaction-detail-status-meta">
+              <div className="office-secondary-meta-row">
+                <dt>Owner email</dt>
+                <dd>{transaction.ownerEmail || "Not available"}</dd>
+              </div>
+              <div className="office-secondary-meta-row">
+                <dt>Created</dt>
+                <dd>{transaction.createdAt}</dd>
+              </div>
+              <div className="office-secondary-meta-row">
+                <dt>Last updated</dt>
+                <dd>{transaction.updatedAt}</dd>
+              </div>
+              <div className="office-secondary-meta-row">
+                <dt>Listing date</dt>
+                <dd>{transaction.listingDate || "Not set"}</dd>
+              </div>
+              <div className="office-secondary-meta-row">
+                <dt>Listing expiration</dt>
+                <dd>{transaction.listingExpirationDate || "Not set"}</dd>
+              </div>
+            </div>
+          </div>
+        </SectionCard>
+      </div>
+
+      <div className="office-transaction-detail-layout">
+        <div className="office-transaction-detail-main">
+          <section id="contacts">
+            <TransactionContactsCard
+              availableContacts={transaction.availableContacts}
+              contacts={transaction.contacts}
+              transactionId={transaction.id}
+            />
+          </section>
+
+          {canViewOffersForRole ? (
+            <section id="offers">
+              <TransactionOffersCard
+                canAcceptOffers={canAcceptOffersForRole}
+                canManageDocuments={canManageDocumentsForRole}
+                canManageOffers={canManageOffersForRole}
+                canManageSignatures={canManageSignaturesForRole}
+                canReviewOffers={canReviewOffersForRole}
+                canUseForms={canUseFormsForRole}
+                formTemplates={transaction.formTemplates}
+                snapshot={offersSnapshot}
+                taskOptions={taskOptions}
+                transactionId={transaction.id}
+              />
+            </section>
+          ) : null}
+
+          <section id="tasks">
+            <TransactionTasksCard
+              assigneeOptions={taskAssigneeOptions}
+              canApproveDocuments={canApproveDocumentsForRole}
+              currentMembershipId={context.currentMembership.id}
+              canReviewTasks={canReviewTasksForRole}
+              canSecondaryReviewTasks={canSecondaryReviewTasksForRole}
+              tasks={tasks}
+              transactionId={transaction.id}
+            />
+          </section>
+
+          <section id="documents" className="office-transaction-detail-documents">
+            <TransactionDocumentsCard
+              canManageDocuments={canManageDocumentsForRole}
+              canViewDocuments={canViewDocumentsForRole}
+              documents={transaction.documents}
+              taskOptions={taskOptions}
+              transactionId={transaction.id}
+            />
+
+            <TransactionUnsortedDocumentsCard
+              canManageDocuments={canManageDocumentsForRole}
+              canViewDocuments={canViewDocumentsForRole}
+              documents={transaction.documents}
+              taskOptions={taskOptions}
+              transactionId={transaction.id}
+            />
+          </section>
+
+          <section id="forms">
+            <TransactionFormsSignaturesCard
+              canManageSignatures={canManageSignaturesForRole}
+              canUseForms={canUseFormsForRole}
+              canViewDocuments={canViewDocumentsForRole}
+              formTemplates={transaction.formTemplates}
+              forms={transaction.forms}
+              taskOptions={taskOptions}
+              transactionId={transaction.id}
+            />
+          </section>
+
+          <section id="updates">
+            <TransactionIncomingUpdatesCard
+              canReviewIncomingUpdates={canReviewIncomingUpdatesForRole}
+              incomingUpdates={transaction.incomingUpdates}
+              transactionId={transaction.id}
+            />
+          </section>
         </div>
-      </SectionCard>
+
+        <aside className="office-transaction-detail-sidebar">
+          <SectionCard id="finance" subtitle="Minimal finance layer for commissions, office net, and notes." title="Finance">
+            <TransactionFinanceForm
+              agentNet={transaction.agentNet}
+              financeNotes={transaction.financeNotes}
+              grossCommission={transaction.grossCommission}
+              officeNet={transaction.officeNet}
+              referralFee={transaction.referralFee}
+              transactionId={transaction.id}
+            />
+          </SectionCard>
+
+          {canViewCommissionsForRole && commissionSnapshot ? (
+            <section id="commissions">
+              <TransactionCommissionCard
+                canApproveCommissions={canApproveCommissionsForRole}
+                canCalculateCommissions={canCalculateCommissionsForRole}
+                canManageCommissions={canManageCommissionsForRole}
+                snapshot={commissionSnapshot}
+                transactionId={transaction.id}
+              />
+            </section>
+          ) : null}
+
+          <SectionCard id="fields" subtitle="Additional custom fields stored with this transaction." title="Additional fields">
+            <div className="office-detail-grid">
+              {Object.entries(transaction.additionalFields).length > 0 ? (
+                Object.entries(transaction.additionalFields).map(([key, value]) => (
+                  <div className="office-detail-field" key={key}>
+                    <span>{key}</span>
+                    <strong>{value || "—"}</strong>
+                  </div>
+                ))
+              ) : (
+                <div className="office-detail-field">
+                  <span>Fields</span>
+                  <strong>No additional fields saved.</strong>
+                </div>
+              )}
+            </div>
+          </SectionCard>
+        </aside>
+      </div>
     </PageShell>
   );
 }
