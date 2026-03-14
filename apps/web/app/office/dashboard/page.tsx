@@ -97,9 +97,23 @@ export default async function OfficeDashboardPage() {
               <div className="office-dashboard-access-panel">
                 <span>Current scope</span>
                 <strong>{officeScopeLabel}</strong>
-                <p>
-                  {context.currentUser.firstName} {context.currentUser.lastName} · {access.label} · {access.permissionCount} permissions
-                </p>
+                <p>The current office view, operator context, and active permission range for this session.</p>
+                <div className="office-dashboard-access-meta">
+                  <article>
+                    <span>Operator</span>
+                    <strong>
+                      {context.currentUser.firstName} {context.currentUser.lastName}
+                    </strong>
+                  </article>
+                  <article>
+                    <span>Role</span>
+                    <strong>{access.label}</strong>
+                  </article>
+                  <article>
+                    <span>Permissions</span>
+                    <strong>{access.permissionCount}</strong>
+                  </article>
+                </div>
               </div>
 
               <div className="office-dashboard-highlight-grid">

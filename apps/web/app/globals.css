@@ -8,7 +8,6 @@
   --accent: #383a39;
   --accent-soft: #ede4d8;
   --success: #58664f;
-  --editorial: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
   --shadow: 0 18px 48px rgba(47, 46, 46, 0.08);
   --radius-xl: 18px;
   --radius-lg: 14px;
@@ -31,7 +30,7 @@ body {
     radial-gradient(circle at top left, rgba(213, 199, 186, 0.28), transparent 22rem),
     radial-gradient(circle at top right, rgba(221, 210, 193, 0.22), transparent 26rem),
     linear-gradient(180deg, #f7f2ea 0%, #ece4da 100%);
-  font-family: "Avenir Next", "Helvetica Neue", "Inter", Arial, sans-serif;
+  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -148,7 +147,7 @@ select {
 .auth-card-copy h2 {
   margin: 0;
   color: var(--text);
-  font-family: var(--office-font-editorial);
+  font-family: var(--office-font-display);
   font-weight: 500;
   letter-spacing: -0.04em;
 }
@@ -4933,9 +4932,8 @@ select {
 /* Office design system */
 
 :root {
-  --office-font-sans: "Helvetica Neue", "Avenir Next", var(--font-office-sans), "SF Pro Text", sans-serif;
-  --office-font-display: "Avenir Next", "Helvetica Neue", var(--font-office-sans), sans-serif;
-  --office-font-editorial: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --office-font-sans: var(--font-office-sans), "Inter", "SF Pro Text", "Segoe UI", sans-serif;
+  --office-font-display: var(--font-office-sans), "Inter", "SF Pro Text", "Segoe UI", sans-serif;
   --office-bg: #f0ebe3;
   --office-bg-muted: #f7f2ea;
   --office-surface: #fcfaf7;
@@ -6959,7 +6957,7 @@ a {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.8fr);
   gap: 16px;
-  align-items: stretch;
+  align-items: start;
 }
 
 .office-dashboard-access-panel,
@@ -6991,6 +6989,7 @@ a {
 .office-dashboard-access-panel strong,
 .office-dashboard-chart-copy strong {
   color: var(--office-text);
+  font-family: var(--office-font-display);
   font-size: 1.18rem;
   line-height: 1.1;
   letter-spacing: -0.03em;
@@ -6998,9 +6997,38 @@ a {
 }
 
 .office-dashboard-access-panel strong {
-  font-family: var(--office-font-editorial);
-  font-size: 1.68rem;
+  font-size: 1.5rem;
   font-weight: 500;
+}
+
+.office-dashboard-access-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding-top: 14px;
+  margin-top: 4px;
+  border-top: 1px solid rgba(205, 191, 174, 0.72);
+}
+
+.office-dashboard-access-meta article {
+  display: grid;
+  gap: 4px;
+}
+
+.office-dashboard-access-meta article > span {
+  color: var(--office-text-soft);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.office-dashboard-access-meta article > strong {
+  color: var(--office-text);
+  font-size: 0.92rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  font-weight: 600;
 }
 
 .office-dashboard-access-panel p,
@@ -7035,7 +7063,7 @@ a {
 
 .office-dashboard-highlight-card strong {
   color: var(--office-text);
-  font-family: var(--office-font-editorial);
+  font-family: var(--office-font-display);
   font-size: 1.7rem;
   line-height: 1;
   letter-spacing: -0.04em;
@@ -7088,7 +7116,7 @@ a {
 }
 
 .office-dashboard-chart-copy strong {
-  font-family: var(--office-font-editorial);
+  font-family: var(--office-font-display);
   font-size: 1.36rem;
   font-weight: 500;
 }
@@ -7237,7 +7265,7 @@ a {
 
 .office-dashboard-progress-ring-inner strong {
   color: var(--office-text);
-  font-family: var(--office-font-editorial);
+  font-family: var(--office-font-display);
   font-size: 2.6rem;
   line-height: 0.92;
   letter-spacing: -0.04em;
@@ -7347,10 +7375,18 @@ a {
   .office-dashboard-chart-layout {
     grid-template-columns: 1fr;
   }
+
+  .office-dashboard-access-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 720px) {
   .office-dashboard-highlight-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .office-dashboard-access-meta {
     grid-template-columns: 1fr;
   }
 
