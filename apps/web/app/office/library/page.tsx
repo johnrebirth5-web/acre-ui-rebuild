@@ -45,7 +45,7 @@ export default async function OfficeLibraryPage(props: OfficeLibraryPageProps) {
             <SummaryChip label="Folders" value={snapshot.summary.totalFolders} />
           </PageHeaderSummary>
         }
-        description="Internal company library for manuals, onboarding packets, legal PDFs, financial references, and office playbooks. PDF preview is inline when practical; all files remain downloadable."
+        description="A shared library for manuals, onboarding packets, legal references, financial files, and office guides."
         eyebrow="Company library"
         title="Company library"
       />

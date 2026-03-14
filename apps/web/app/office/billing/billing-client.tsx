@@ -232,7 +232,7 @@ export function OfficeBillingClient({ snapshot }: OfficeBillingClientProps) {
                 Open accounting activity
               </Link>
             }
-            subtitle="Open invoice balances and future-dated charges for your current membership. Payments are still recorded by office accounting, not by a live gateway."
+            subtitle="Review open balances and upcoming charges for your membership. Payments posted by the office will appear here."
             title="Outstanding balance"
           >
             {snapshot.outstandingChargeRows.length || snapshot.upcomingChargeRows.length ? (
@@ -381,7 +381,7 @@ export function OfficeBillingClient({ snapshot }: OfficeBillingClientProps) {
           </SectionCard>
 
           <SectionCard
-            subtitle="Live monthly statement summaries generated at view time from the current ledger. Downloadable PDFs are not available in this MVP."
+            subtitle="Monthly statement totals are shown here based on your billing history."
             title="Statements"
           >
             {snapshot.statements.length ? (
@@ -469,7 +469,7 @@ export function OfficeBillingClient({ snapshot }: OfficeBillingClientProps) {
                 Add method
               </Button>
             }
-            subtitle="Masked billing-method references only. This page does not connect to a live payment gateway or store raw credentials."
+            subtitle="Saved payment methods used for billing coordination."
             title="Payment methods"
           >
             {formError ? <p className="office-form-error">{formError}</p> : null}
@@ -519,7 +519,7 @@ export function OfficeBillingClient({ snapshot }: OfficeBillingClientProps) {
                     Add method
                   </Button>
                 }
-                description="Store a masked card or bank reference if the office uses it for billing coordination. No live charge capture is connected."
+                description="Save a card or bank reference here if the office uses it for billing coordination."
                 title="No payment methods on file"
               />
             )}
@@ -560,7 +560,7 @@ export function OfficeBillingClient({ snapshot }: OfficeBillingClientProps) {
             )}
           </SectionCard>
 
-          <SectionCard subtitle="Current scope and limitations for self-service billing in this MVP." title="Current limitations">
+          <SectionCard subtitle="Important details about how billing is handled for this office." title="Billing notes">
             <ul className="office-billing-limitations">
               {snapshot.limitations.map((item) => (
                 <li key={item}>{item}</li>
@@ -641,7 +641,7 @@ export function OfficeBillingClient({ snapshot }: OfficeBillingClientProps) {
               {formError ? <p className="office-form-error">{formError}</p> : null}
 
               <footer className="bm-transaction-modal-footer">
-                <span>This stores only a masked billing-method reference. No live processor token or raw credential is captured here.</span>
+                <span>This saves a labeled payment method reference for billing records.</span>
                 <Button disabled={pendingAction === "save-payment-method"} type="submit">
                   {pendingAction === "save-payment-method" ? "Saving..." : paymentMethodFormState.paymentMethodId ? "Save method" : "Add method"}
                 </Button>

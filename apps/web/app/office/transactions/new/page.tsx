@@ -11,9 +11,9 @@ export default function OfficeTransactionCreatePage() {
         actions={
           <div className="office-new-transaction-header-actions">
             <PageHeaderSummary className="office-new-transaction-summary">
-              <SummaryChip label="Workflow" value="Intake draft" />
+              <SummaryChip label="Stage" value="New intake" />
               <SummaryChip label="Participants" tone="accent" value={draft.participants.length} />
-              <SummaryChip label="Referral rules" value={draft.referralRules.length} />
+              <SummaryChip label="Referral items" value={draft.referralRules.length} />
             </PageHeaderSummary>
             <Link className="office-button office-button-secondary" href="/office/transactions">
               Back to transactions
@@ -21,7 +21,7 @@ export default function OfficeTransactionCreatePage() {
             <Button type="button">Save draft</Button>
           </div>
         }
-        description="Static transaction intake draft based on the Agent CRM referral tutorial. This page is still read-only, but the layout now matches the rest of the office detail workflow."
+        description="Review the information captured when opening a new transaction."
         title="New transaction"
       />
 
@@ -135,7 +135,7 @@ export default function OfficeTransactionCreatePage() {
           </div>
         </SectionCard>
 
-        <SectionCard className="bm-new-transaction-card office-new-transaction-card" title="Referral rules from Agent CRM tutorial">
+        <SectionCard className="bm-new-transaction-card office-new-transaction-card" title="Referral guidelines">
           <div className="bm-rule-list">
             {draft.referralRules.map((rule) => (
               <article className="bm-rule-item" key={rule}>

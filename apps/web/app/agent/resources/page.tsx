@@ -12,14 +12,13 @@ export default function AgentResourcesPage() {
           <Badge tone="accent">Resource Hub</Badge>
           <h2>Training, vendors, docs, and searchable Acre knowledge.</h2>
           <p>
-            This is a unified retrieval surface, not a dumping ground. Search needs to work across video, vendor cards,
-            templates, and internal operating knowledge.
+            Keep training, vendors, and office knowledge in one place so agents can find what they need quickly.
           </p>
         </div>
       </section>
 
       <section className="workspace-grid">
-        <Panel title="Resource families" subtitle="The PRD is explicit about the structure.">
+        <Panel title="Resource families" subtitle="Browse the main types of material available to the team.">
           <div className="list-column">
             {resourceFeed.map((resource) => (
               <article className="list-row" key={resource.id}>
@@ -37,7 +36,7 @@ export default function AgentResourcesPage() {
             ))}
           </div>
         </Panel>
-        <Panel title="Vendor directory" subtitle="The same resource layer feeds agent lookup and later public utility surfaces.">
+        <Panel title="Vendor directory" subtitle="A quick directory of trusted vendors and service contacts.">
           <div className="list-column">
             {vendorFeed.map((vendor) => (
               <article className="list-row" key={vendor.id}>

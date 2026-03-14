@@ -36,6 +36,7 @@ import { TransactionCommissionCard } from "./commission-card";
 import { TransactionOffersCard } from "./offers-card";
 import { TransactionStatusForm } from "./status-form";
 import { TransactionTasksCard } from "./tasks-card";
+import { TransactionDetailNav } from "./transaction-detail-nav";
 
 type TransactionDetailPageProps = {
   params: Promise<{
@@ -78,6 +79,19 @@ export default async function OfficeTransactionDetailPage({ params }: Transactio
   const canManageCommissionsForRole = canManageOfficeCommissions(context.currentMembership.role);
   const canCalculateCommissionsForRole = canCalculateOfficeCommissions(context.currentMembership.role);
   const canApproveCommissionsForRole = canApproveOfficeCommissions(context.currentMembership.role);
+  const navItems = [
+    { id: "overview", label: "Overview" },
+    { id: "status", label: "Status" },
+    { id: "contacts", label: "Contacts" },
+    ...(canViewOffersForRole ? [{ id: "offers", label: "Offers" }] : []),
+    { id: "tasks", label: "Tasks" },
+    { id: "documents", label: "Documents" },
+    { id: "forms", label: "Forms" },
+    { id: "updates", label: "Updates" },
+    { id: "finance", label: "Finance" },
+    ...(canViewCommissionsForRole && commissionSnapshot ? [{ id: "commissions", label: "Commissions" }] : []),
+    { id: "fields", label: "Fields" }
+  ];
 
   return (
     <PageShell className="bm-transaction-detail-page office-detail-page office-transaction-detail-page">
@@ -96,23 +110,11 @@ export default async function OfficeTransactionDetailPage({ params }: Transactio
           </div>
         }
         description={`${transaction.address}, ${transaction.city}, ${transaction.state} ${transaction.zipCode}`}
-        eyebrow="Transaction detail"
+        eyebrow="Transactions"
         title={transaction.title}
       />
 
-      <nav aria-label="Transaction sections" className="office-detail-anchor-nav office-transaction-detail-nav">
-        <a href="#overview">Overview</a>
-        <a href="#status">Status</a>
-        <a href="#contacts">Contacts</a>
-        {canViewOffersForRole ? <a href="#offers">Offers</a> : null}
-        <a href="#tasks">Tasks</a>
-        <a href="#documents">Documents</a>
-        <a href="#forms">Forms</a>
-        <a href="#updates">Updates</a>
-        <a href="#finance">Finance</a>
-        {canViewCommissionsForRole && commissionSnapshot ? <a href="#commissions">Commissions</a> : null}
-        <a href="#fields">Fields</a>
-      </nav>
+      <TransactionDetailNav items={navItems} />
 
       <div className="office-transaction-detail-hero">
         <SectionCard id="overview" subtitle="Core transaction facts, dates, and referral context." title="Overview">
@@ -160,7 +162,7 @@ export default async function OfficeTransactionDetailPage({ params }: Transactio
           </div>
         </SectionCard>
 
-        <SectionCard id="status" subtitle="Update the primary workflow status and keep the audit context close at hand." title="Status">
+        <SectionCard id="status" subtitle="Review and update the main transaction status." title="Status">
           <div className="office-transaction-detail-status-stack">
             <TransactionStatusForm currentStatus={transaction.status} transactionId={transaction.id} />
             <div className="office-secondary-meta-list office-transaction-detail-status-meta">

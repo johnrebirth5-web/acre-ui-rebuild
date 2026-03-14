@@ -81,7 +81,7 @@ export default async function OfficeDashboardPage() {
             <SummaryChip label="Live pipeline" tone="accent" value={livePipelineCount} />
           </PageHeaderSummary>
         }
-        description="Goal tracking, current back-office pressure, and recent transactions inside one operational dashboard."
+        description="Goal tracking, current office workload, and recent transactions in one dashboard."
         eyebrow="Dashboard"
         title="Office dashboard"
       />
@@ -97,7 +97,7 @@ export default async function OfficeDashboardPage() {
               <div className="office-dashboard-access-panel">
                 <span>Current scope</span>
                 <strong>{officeScopeLabel}</strong>
-                <p>The current office view, operator context, and active permission range for this session.</p>
+                <p>The office currently in view, along with the role and access being used for this session.</p>
                 <div className="office-dashboard-access-meta">
                   <article>
                     <span>Operator</span>

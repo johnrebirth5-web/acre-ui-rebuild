@@ -396,14 +396,14 @@ export async function getOfficeAccountSnapshot(input: GetOfficeAccountSnapshotIn
       recentCount: recentNotificationsCount
     },
     security: {
-      authMethodLabel: "Local seeded session",
-      authMethodDescription: "Current Office access uses a development-only seeded email login and browser session.",
-      passwordStatusLabel: "No in-app password",
-      passwordStatusDescription: "The current auth flow does not store or rotate passwords inside Acre.",
-      twoStepStatusLabel: "Not available",
-      twoStepStatusDescription: "2-step verification has not been implemented in the current Office auth flow.",
-      sessionStatusLabel: "12-hour HTTP-only session",
-      sessionStatusDescription: "The active session is stored in an HTTP-only cookie with a 12-hour max age."
+      authMethodLabel: "Email sign-in",
+      authMethodDescription: "Use your office email to open this workspace on the current browser.",
+      passwordStatusLabel: "Managed with office access",
+      passwordStatusDescription: "Password changes are handled with the office sign-in setup.",
+      twoStepStatusLabel: "Coming soon",
+      twoStepStatusDescription: "Two-step verification will appear here when it is available for your office.",
+      sessionStatusLabel: "Active on this browser",
+      sessionStatusDescription: "This browser is currently recognized as your signed-in session."
     },
     summary: {
       openTaskCount: openTransactionTaskCount + openFollowUpTaskCount,
@@ -599,7 +599,7 @@ export async function saveOfficeAccountNotificationPreferences(input: SaveOffice
         officeId: membership.officeId,
         objectLabel: buildFullName(membership.user.firstName, membership.user.lastName),
         contextHref: "/office/account",
-        details: ["Channel: In-app inbox only", "Email / SMS / push delivery is not implemented"],
+        details: ["Channel: In-app inbox", "Additional delivery options are coming soon"],
         changes
       }
     });

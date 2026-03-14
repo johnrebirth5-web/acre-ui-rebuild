@@ -345,14 +345,14 @@ export default async function OfficeReportsPage(props: ReportsPageProps) {
             </Link>
           </PageHeaderSummary>
         }
-        description="Manager-facing reports workspace for live transaction, agent/team, commission, accounting, and earnest money data."
+        description="Office reports for transactions, commissions, accounting, and deposits."
         eyebrow="Reports"
         title="Reports"
       />
 
       <ListPageSection
         className="office-reports-filter-card"
-        subtitle="Shareable query-param filters across transactions, commissions, accounting, and EMD slices."
+        subtitle="Use one set of filters to review transactions, commissions, accounting, and deposits."
         title="Report filters"
       >
         <ListPageFilters as="form" className="office-report-filters" method="get">
@@ -445,18 +445,18 @@ export default async function OfficeReportsPage(props: ReportsPageProps) {
 
       <ListPageSection
         className="office-reports-summary-card"
-        subtitle="Top-level report totals stay query-param scoped and derived only from persisted transaction, commission, accounting, and EMD data."
+        subtitle="These totals reflect the transactions, commissions, accounting, and deposits currently in view."
         title="Report summary"
       >
         <ListPageStatsGrid className="office-reports-kpi-grid">
           <StatCard hint="Real transactions inside the current reporting window." label="Matching transactions" value={snapshot.totals.totalTransactions} />
           <StatCard hint="Total price across the current filtered transaction set." label="Total volume" value={snapshot.totals.totalVolumeLabel} />
-          <StatCard hint="Pulled from persisted transaction finance values; no missing values are inferred." label="Gross commission" value={snapshot.totals.totalGrossCommissionLabel} />
-          <StatCard hint="Sum of persisted office net values from transaction finance." label="Office net" value={snapshot.totals.totalOfficeNetLabel} />
+          <StatCard hint="Total gross commission across the transactions in view." label="Gross commission" value={snapshot.totals.totalGrossCommissionLabel} />
+          <StatCard hint="Total office net across the transactions in view." label="Office net" value={snapshot.totals.totalOfficeNetLabel} />
           <StatCard hint="Can drill directly into the filtered transaction list." label="Closed transactions" value={snapshot.totals.closedTransactionCount} />
-          <StatCard hint="Owners with at least one matching deal in the current slice." label="Active owners" value={snapshot.totals.activeOwnerCount} />
+          <StatCard hint="Owners with at least one matching deal in the current view." label="Active owners" value={snapshot.totals.activeOwnerCount} />
           <StatCard hint={`${snapshot.totals.payableCommissionLabel} already in payable status.`} label="Statement ready / payable" value={snapshot.totals.statementReadyCommissionLabel} />
-          <StatCard hint={`${snapshot.totals.overdueEmdCount} overdue EMD records in the current slice.`} label="Received payments / overdue EMD" value={snapshot.totals.receivedPaymentsLabel} />
+          <StatCard hint={`${snapshot.totals.overdueEmdCount} overdue EMD records in the current view.`} label="Received payments / overdue EMD" value={snapshot.totals.receivedPaymentsLabel} />
         </ListPageStatsGrid>
       </ListPageSection>
 
@@ -470,7 +470,7 @@ export default async function OfficeReportsPage(props: ReportsPageProps) {
                   Open transactions
                 </Link>
               }
-              subtitle="Filters stay query-param driven so this view can be shared with office managers and admins."
+              subtitle="These filters can be shared with office managers and admins."
               title="Reporting scope"
             >
               <SecondaryMetaList
@@ -487,10 +487,10 @@ export default async function OfficeReportsPage(props: ReportsPageProps) {
                         : "Open"
                   },
                   {
-                    label: "Current slice",
+                    label: "Current view",
                     value: [
-                      snapshot.filters.ownerMembershipId ? "Owner scoped" : "All owners",
-                      snapshot.filters.teamId ? "Team scoped" : "All teams",
+                      snapshot.filters.ownerMembershipId ? "Single owner" : "All owners",
+                      snapshot.filters.teamId ? "Single team" : "All teams",
                       snapshot.filters.transactionStatus
                         ? `Status ${getFilterStatusLabel(snapshot.filters.transactionStatus)}`
                         : "All transaction states",
@@ -520,7 +520,7 @@ export default async function OfficeReportsPage(props: ReportsPageProps) {
                   View filtered list
                 </Link>
               }
-              subtitle="Review status, type, and time trends inside the current transaction slice."
+              subtitle="Review status, type, and time trends inside the current transaction view."
               title="Transaction performance"
             >
               <div className="office-dashboard-grid-wide office-reports-subgrid">
@@ -734,7 +734,7 @@ export default async function OfficeReportsPage(props: ReportsPageProps) {
                     </DataTableRow>
                   ))}
                   {snapshot.agentPerformance.length === 0 ? (
-                    <EmptyState description="No owner-attributed production matched the current slice." title="No agent rows" />
+                    <EmptyState description="No owner-attributed production matched the current view." title="No agent rows" />
                   ) : null}
                 </DataTableBody>
               </DataTable>
@@ -970,7 +970,7 @@ export default async function OfficeReportsPage(props: ReportsPageProps) {
             >
               <ListPageStatsGrid className="office-report-stat-strip">
                 <StatCard hint="Ledger-backed accounting rows in scope." label="Accounting rows" value={snapshot.accountingSummary.transactionCount} />
-                <StatCard hint="Invoices inside the current reporting slice." label="Invoices" value={snapshot.accountingSummary.totalInvoices} />
+                <StatCard hint="Invoices inside the current reporting view." label="Invoices" value={snapshot.accountingSummary.totalInvoices} />
                 <StatCard hint="Bills still open for payment." label="Open bills" value={snapshot.accountingSummary.openBills} />
                 <StatCard hint={snapshot.accountingSummary.madePaymentsLabel} label="Received / made payments" value={snapshot.accountingSummary.receivedPaymentsLabel} />
               </ListPageStatsGrid>
@@ -1064,11 +1064,11 @@ export default async function OfficeReportsPage(props: ReportsPageProps) {
                   Open EMD ledger
                 </Link>
               }
-              subtitle="Only persisted earnest money records are included in this summary."
+              subtitle="Only saved earnest money records are included in this summary."
               title="Earnest money summary"
             >
               <ListPageStatsGrid className="office-report-stat-strip">
-                <StatCard hint="Persisted earnest money records in scope." label="EMD records" value={snapshot.emdSummary.recordCount} />
+                <StatCard hint="Earnest money records currently in view." label="EMD records" value={snapshot.emdSummary.recordCount} />
                 <StatCard hint="Records not yet fully resolved." label="Outstanding" value={snapshot.emdSummary.outstandingCount} />
                 <StatCard hint="Records already past their due date." label="Overdue" value={snapshot.emdSummary.overdueCount} />
                 <StatCard hint={snapshot.emdSummary.receivedAmountLabel} label="Expected / received" value={snapshot.emdSummary.expectedAmountLabel} />

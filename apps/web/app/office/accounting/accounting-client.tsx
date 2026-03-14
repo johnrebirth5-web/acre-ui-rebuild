@@ -726,7 +726,7 @@ export function OfficeAccountingClient({
           </ListPageTableSection>
 
           <ListPageTableSection
-            footer={<ListPageFooter summary={`${snapshot.generalLedgerEntries.length} ledger entries in the current slice`} />}
+            footer={<ListPageFooter summary={`${snapshot.generalLedgerEntries.length} ledger entries in the current view`} />}
             id="chart-of-accounts"
             subtitle={`Latest ${snapshot.generalLedgerEntries.length} posted entries`}
             title="General ledger"
@@ -854,7 +854,7 @@ export function OfficeAccountingClient({
 
           <ListPageTableSection
             footer={<ListPageFooter summary={`${snapshot.chartAccounts.length} chart accounts available in this scope`} />}
-            subtitle="System accounts are seeded and ready; custom account editing is intentionally not exposed yet."
+            subtitle="Office accounts available for entries in this office."
             title="Chart of accounts"
           >
             <DataTable className="office-table">
@@ -880,7 +880,7 @@ export function OfficeAccountingClient({
                 ))}
 
                 {snapshot.chartAccounts.length === 0 ? (
-                  <EmptyState description="System accounts are seeded automatically once accounting is enabled." title="No chart accounts available" />
+                  <EmptyState description="Accounts will appear here once accounting is available for this office." title="No chart accounts available" />
                 ) : null}
               </DataTableBody>
             </DataTable>

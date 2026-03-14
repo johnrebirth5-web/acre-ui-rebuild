@@ -503,7 +503,7 @@ export function CommissionManagementPanel({
         <ListPageStatsGrid className="office-commission-kpi-grid office-accounting-kpi-grid">
           <StatCard hint="active plans configured for this office scope" label="Active plans" value={snapshot.overview.activePlansCount} />
           <StatCard hint="active plan assignments across agents and teams" label="Assignments" value={snapshot.overview.activeAssignmentsCount} />
-          <StatCard hint="persisted commission rows in the current filter window" label="Calculated rows" value={snapshot.overview.calculatedRowsCount} />
+          <StatCard hint="commission rows currently included in this view" label="Calculated rows" value={snapshot.overview.calculatedRowsCount} />
           <StatCard hint="rows ready for statement packaging" label="Statement ready" value={snapshot.overview.statementReadyLabel} />
           <StatCard hint="rows marked payable" label="Payable" value={snapshot.overview.payableLabel} />
           <StatCard hint="rows marked paid" label="Paid" value={snapshot.overview.paidLabel} />
@@ -856,7 +856,7 @@ export function CommissionManagementPanel({
           </div>
 
           <div className="office-side-stack office-accounting-side-column">
-            <ListPageSection subtitle="Persisted commission calculations, review queue, and payout-readiness workflow." title="Commission queue">
+            <ListPageSection subtitle="Commission calculations currently in review and ready for payout preparation." title="Commission queue">
               <div className="office-table">
                 <div className="office-table-header office-table-row office-table-row-commission">
                   <span>Transaction</span>

@@ -20,7 +20,7 @@ export function AgentNav() {
         <div className="brand-mark">
           <span>Acre</span>
           <strong>Agent OS</strong>
-          <p>Field-ready workspace for listings, CRM follow-up, events, and knowledge tools.</p>
+          <p>Your workspace for listings, client follow-up, events, and shared resources.</p>
         </div>
 
         <SiteReleaseBadge className="site-release-badge-agent" />
@@ -40,7 +40,7 @@ export function AgentNav() {
 
         <div className="sidebar-note">
           <AgentBadge>Mobile-safe</AgentBadge>
-          <strong>Same workflows, reduced chrome.</strong>
+          <strong>Built for desktop and mobile.</strong>
           <p>The mobile view keeps primary actions one tap away using a compact bottom rail.</p>
         </div>
       </aside>

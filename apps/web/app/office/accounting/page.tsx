@@ -98,7 +98,7 @@ export default async function OfficeAccountingPage(props: OfficeAccountingPagePr
             <SummaryChip label="Office net ledger impact" value={snapshot.overview.officeNetLedgerImpactLabel} />
           </PageHeaderSummary>
         }
-        description="Transactional accounting for invoices, bills, payments, ledger posting, and earnest money workflows."
+        description="Accounting records for invoices, bills, payments, ledger entries, and deposit tracking."
         eyebrow="Accounting"
         title="Accounting"
       />

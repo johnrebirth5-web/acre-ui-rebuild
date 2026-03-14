@@ -12,13 +12,12 @@ export default function AgentNotificationsPage() {
           <Badge tone="accent">Activity Center</Badge>
           <h2>Events, notices, RSVP, and reminders from one stream.</h2>
           <p>
-            The final version will unify office broadcasts, event participation, and follow-up reminders so agents do
-            not need to check multiple places.
+            Keep office notices, event participation, and reminders together so agents do not need to check multiple places.
           </p>
         </div>
       </section>
 
-      <Panel title="Current activity model" subtitle="This stream merges system notices with event actions.">
+      <Panel title="Current activity" subtitle="This stream brings together office notices and event actions.">
         <div className="list-column">
           {activityCards.map((card) => (
             <article className="list-row" key={card.id}>
@@ -36,7 +35,7 @@ export default function AgentNotificationsPage() {
         </div>
       </Panel>
 
-      <Panel title="Upcoming events" subtitle="Office-created events feed the same activity surface for agents.">
+      <Panel title="Upcoming events" subtitle="Office-created events appear alongside the rest of your activity.">
         <div className="list-column">
           {upcomingEvents.map((event) => (
             <article className="list-row" key={event.id}>

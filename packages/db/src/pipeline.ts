@@ -356,11 +356,11 @@ function buildSelectionState(
 
 function buildMetricModeDescription(metricMode: OfficePipelineMetricMode) {
   if (metricMode === "office_net") {
-    return "Uses stored office net values from transaction finance and commission workflow outputs; missing values are treated as zero.";
+    return "Uses the office net values saved on each transaction; missing values are treated as zero.";
   }
 
   if (metricMode === "office_gross") {
-    return "Uses stored gross commission values from transaction finance; transactions without gross commission data are treated as zero.";
+    return "Uses the gross commission values saved on each transaction; missing values are treated as zero.";
   }
 
   return "Uses transaction price as the current pipeline volume metric.";

@@ -493,7 +493,7 @@ export function OfficeLibraryClient({ snapshot, canManageLibrary }: OfficeLibrar
         <div className="office-library-browser-head">
           <div>
             <h3>Folders and files</h3>
-            <p>Select a folder to reveal its files. PDF preview stays hidden until you open a document.</p>
+            <p>Select a folder to view its files, then open any document to preview it here.</p>
           </div>
         </div>
 
@@ -649,7 +649,7 @@ export function OfficeLibraryClient({ snapshot, canManageLibrary }: OfficeLibrar
                   />
                 ) : (
                   <EmptyState
-                    description="Inline preview is currently PDF-first. Use Open or Download for this file type."
+                    description="This file type opens best in a separate tab or through download."
                     title="Preview unavailable"
                   />
                 )}
@@ -689,7 +689,7 @@ export function OfficeLibraryClient({ snapshot, canManageLibrary }: OfficeLibrar
                     <form className="office-library-side-form" key={selectedDocument.id} onSubmit={handleSaveDocument}>
                       <div className="office-library-side-form-head">
                         <strong>Document details</strong>
-                        <span>Rename, move, and update internal metadata.</span>
+                        <span>Rename, move, and update the details for this file.</span>
                       </div>
 
                       <label className="office-form-field">
@@ -791,7 +791,7 @@ export function OfficeLibraryClient({ snapshot, canManageLibrary }: OfficeLibrar
               </label>
 
               <footer className="bm-transaction-modal-footer">
-                <span>Deletion is intentionally not included in this MVP.</span>
+                <span>Folders can be renamed and organized again at any time.</span>
                 <div className="bm-transaction-modal-actions">
                   <Button onClick={() => setIsCreateFolderOpen(false)} type="button" variant="secondary">
                     Cancel
@@ -812,7 +812,7 @@ export function OfficeLibraryClient({ snapshot, canManageLibrary }: OfficeLibrar
             <header className="bm-transaction-modal-header">
               <div>
                 <h3>Upload file</h3>
-                <p>PDF-first library upload for company manuals, onboarding packets, and internal references.</p>
+                <p>Upload a file for the company or office library.</p>
               </div>
               <button aria-label="Close upload modal" onClick={() => setIsUploadOpen(false)} type="button">
                 ×
@@ -866,7 +866,7 @@ export function OfficeLibraryClient({ snapshot, canManageLibrary }: OfficeLibrar
               </label>
 
               <footer className="bm-transaction-modal-footer">
-                <span>Inline preview is PDF-first. Other file types remain downloadable.</span>
+                <span>Some file types can be previewed here. Others can be opened or downloaded.</span>
                 <div className="bm-transaction-modal-actions">
                   <Button onClick={() => setIsUploadOpen(false)} type="button" variant="secondary">
                     Cancel

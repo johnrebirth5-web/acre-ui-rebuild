@@ -233,7 +233,7 @@ export function TransactionDocumentsCard({
       <div className="bm-card-head">
         <div>
           <h3>Documents</h3>
-          <span>Structured back-office files linked to this transaction and its checklist tasks.</span>
+          <span>Documents linked to this transaction and its checklist items.</span>
         </div>
       </div>
 
@@ -499,7 +499,7 @@ export function TransactionUnsortedDocumentsCard({
       <div className="bm-card-head">
         <div>
           <h3>Unsorted documents</h3>
-          <span>Files that landed in the transaction but have not been organized into the main workflow yet.</span>
+          <span>Files added to this transaction before they have been placed in the right section.</span>
         </div>
       </div>
 
@@ -575,7 +575,7 @@ export function TransactionUnsortedDocumentsCard({
           ))
         ) : (
           <EmptyState
-            description="Uploads marked as unsorted will appear here until they are placed into the workflow."
+            description="Files marked to sort later will appear here until they are placed."
             title="No unsorted documents."
           />
         )}

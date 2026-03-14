@@ -344,7 +344,7 @@ export default async function OfficeActivityPage(props: OfficeActivityPageProps)
                     </article>
                   ))
                 ) : (
-                  <EmptyState description="This scope is clear based on the current live workflow state." title="No live operational alerts are active for this scope." />
+                  <EmptyState description="This scope is clear based on the current activity in view." title="No live operational alerts are active for this scope." />
                 )}
               </div>
             </SectionCard>

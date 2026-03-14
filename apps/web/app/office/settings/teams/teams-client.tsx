@@ -235,7 +235,7 @@ export function OfficeSettingsTeamsClient({ snapshot, canManageTeams }: OfficeSe
         </DataTable>
       </ListPageTableSection>
 
-      <ListPageSection subtitle="Create and manage operational teams without leaving Back Office." title="Team administration">
+      <ListPageSection subtitle="Create and manage teams for this office." title="Team administration">
 
         {canManageTeams ? (
           <form className="office-settings-inline-form" onSubmit={handleCreateTeam}>

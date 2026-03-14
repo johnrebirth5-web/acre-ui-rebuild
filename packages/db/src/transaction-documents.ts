@@ -1101,7 +1101,7 @@ export async function createTransactionDocument(input: CreateTransactionDocument
         transactionId: input.transactionId,
         actorMembershipId: input.actorMembershipId ?? null,
         taskIds: [linkedTask.id],
-        reason: "Task workflow re-evaluated after a linked document was uploaded."
+        reason: "Task requirements were checked again after a linked document was uploaded."
       });
     }
 
@@ -1242,7 +1242,7 @@ export async function updateTransactionDocument(input: UpdateTransactionDocument
       transactionId: input.transactionId,
       actorMembershipId: input.actorMembershipId ?? null,
       taskIds: [existing.linkedTaskId, linkedTask?.id],
-      reason: "Task workflow re-evaluated after a linked document changed."
+      reason: "Task requirements were checked again after a linked document changed."
     });
 
     return saved.id;
@@ -1321,7 +1321,7 @@ export async function deleteTransactionDocument(
       transactionId,
       actorMembershipId: actorMembershipId ?? null,
       taskIds: [existing.linkedTaskId],
-      reason: "Task workflow re-evaluated after a linked document was deleted."
+      reason: "Task requirements were checked again after a linked document was deleted."
     });
 
     return {
@@ -1677,7 +1677,7 @@ export async function updateTransactionForm(input: UpdateTransactionFormInput): 
       transactionId: input.transactionId,
       actorMembershipId: input.actorMembershipId ?? null,
       taskIds: [existing.linkedTaskId, linkedTask?.id],
-      reason: "Task workflow re-evaluated after a linked form changed."
+      reason: "Task requirements were checked again after a linked form changed."
     });
 
     return saved.id;
@@ -1905,7 +1905,7 @@ export async function updateSignatureRequest(input: UpdateSignatureRequestInput)
       transactionId: input.transactionId,
       actorMembershipId: input.actorMembershipId ?? null,
       taskIds: [existing.form?.linkedTaskId ?? null, existing.document?.linkedTaskId ?? null],
-      reason: "Task workflow re-evaluated after a linked signature request changed."
+      reason: "Task requirements were checked again after a linked signature request changed."
     });
 
     return saved.id;

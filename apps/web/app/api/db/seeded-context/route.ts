@@ -9,7 +9,7 @@ export async function GET() {
       return NextResponse.json(
         {
           status: "not_found",
-          message: "No seeded Acre workspace was found. Run the Prisma migration and seed workflow first."
+          message: "No workspace data is available yet. Finish setup and try again."
         },
         { status: 404 }
       );
@@ -23,7 +23,7 @@ export async function GET() {
     return NextResponse.json(
       {
         status: "unavailable",
-        message: "Database query failed. Confirm DATABASE_URL, run the migration workflow, and seed the database.",
+        message: "We couldn't load the workspace right now. Please check the database connection and try again.",
         error: error instanceof Error ? error.message : "Unknown database error"
       },
       { status: 503 }

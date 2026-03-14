@@ -118,7 +118,7 @@ export function TransactionCommissionCard({
   return (
     <section id="commission">
       <SectionCard
-        subtitle="Assigned commission plan, calculation inputs, and persisted commission rows for this transaction."
+        subtitle="Review the commission plan, figures, and payment status for this transaction."
         title="Commission"
       >
         <div className="office-kpi-grid office-commission-kpi-grid">

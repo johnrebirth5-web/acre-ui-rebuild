@@ -53,7 +53,7 @@ export default async function OfficeAgentsPage(props: OfficeAgentsPageProps) {
             <SummaryChip label="Inactive members" value={snapshot.summary.inactiveMemberCount} />
           </PageHeaderSummary>
         }
-        description="Agent profiles, onboarding visibility, teams, goals, and operating performance for the current back-office workspace."
+        description="Agent profiles, onboarding, teams, goals, and performance for the current office."
         eyebrow="Agent management"
         title="Agents"
       />

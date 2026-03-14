@@ -237,7 +237,7 @@ export function OfficeSettingsChecklistsClient({ snapshot, canManageChecklists }
 
       <ListPageTableSection
         footer={<ListPageFooter summary={`${snapshot.templates.length} checklist templates`} />}
-        subtitle="Canonical list view for template inventory before opening detailed editors."
+        subtitle="Review the templates currently available for this office."
         title="Checklist templates"
       >
         <DataTable className="office-table">
@@ -265,14 +265,14 @@ export function OfficeSettingsChecklistsClient({ snapshot, canManageChecklists }
                 </DataTableRow>
               ))
             ) : (
-              <EmptyState description="Create the first checklist template to start enforcing office workflow requirements." title="No templates yet" />
+              <EmptyState description="Create the first checklist template to start organizing recurring task lists." title="No templates yet" />
             )}
           </DataTableBody>
         </DataTable>
       </ListPageTableSection>
 
       {canManageChecklists ? (
-        <ListPageSection subtitle="Create reusable grouped task templates for office workflows." title="New checklist template">
+        <ListPageSection subtitle="Create reusable grouped task templates for this office." title="New checklist template">
           <form className="office-settings-template-form" onSubmit={handleCreateTemplate}>
             <div className="office-settings-template-meta">
               <FormField label="Template name">
@@ -500,7 +500,7 @@ export function OfficeSettingsChecklistsClient({ snapshot, canManageChecklists }
             );
           })}
           {snapshot.templates.length === 0 ? (
-            <EmptyState description="Create your first checklist template to configure workflow rows." title="No templates to edit" />
+            <EmptyState description="Create your first checklist template to start editing items here." title="No templates to edit" />
           ) : null}
         </div>
       </ListPageSection>

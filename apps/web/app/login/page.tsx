@@ -30,7 +30,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           <div className="auth-hero-copy">
             <span className="auth-eyebrow">Acre System</span>
             <h1>A calmer operating system for the office.</h1>
-            <p>Transactions, accounting, approvals, reporting, and agent operations now sit inside one warmer, more composed back-office workspace.</p>
+            <p>Transactions, accounting, approvals, reporting, and agent operations stay together in one organized office workspace.</p>
           </div>
 
           <div className="auth-hero-metrics">
@@ -40,7 +40,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
               <p>{seededWorkspace?.organization.name ?? "Acre NY Realty"}</p>
             </article>
             <article className="auth-hero-metric">
-              <span>Seeded users</span>
+              <span>Available users</span>
               <strong>{seededWorkspace?.memberships.length ?? 0}</strong>
               <p>{uniqueRoles.length} active role types</p>
             </article>
@@ -49,8 +49,8 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           {featuredMemberships.length > 0 ? (
             <section className="auth-quick-access">
               <div className="auth-quick-access-copy">
-                <strong>Quick local access</strong>
-                <p>Use seeded accounts to enter the rebuild preview instantly without a production password flow.</p>
+                <strong>Quick sign-in</strong>
+                <p>Choose one of the saved office profiles below to enter quickly.</p>
               </div>
 
               <div className="auth-user-grid">
@@ -74,9 +74,9 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
 
         <section className="auth-panel">
           <div className="auth-card-copy">
-            <span className="auth-eyebrow">Local Access</span>
-            <h2>Enter the rebuild preview</h2>
-            <p>Use any active office membership email to create a local Acre session for the current workspace snapshot.</p>
+            <span className="auth-eyebrow">Sign in</span>
+            <h2>Enter Acre</h2>
+            <p>Use your office email to open the current workspace.</p>
             <SiteReleaseBadge className="site-release-badge-auth" />
           </div>
 
@@ -86,9 +86,9 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
               <input autoComplete="email" defaultValue="simon@acre.com" name="email" placeholder="jane@acre.com" type="email" />
             </label>
 
-            {params?.error ? <p className="auth-error">No active seeded user matched that email.</p> : null}
+            {params?.error ? <p className="auth-error">We couldn't find an active account with that email.</p> : null}
 
-            <p className="auth-form-helper">This local preview uses seeded membership emails only. Production password auth is not enabled in this environment.</p>
+            <p className="auth-form-helper">You can sign in with any active office email listed below.</p>
 
             <div className="auth-actions">
               <button className="auth-submit" type="submit">
@@ -100,8 +100,8 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           {seededWorkspace ? (
             <section className="auth-demo-card">
               <div className="auth-demo-card-copy">
-                <strong>Preview directory</strong>
-                <p>All seeded memberships currently attached to this workspace snapshot.</p>
+                <strong>Available profiles</strong>
+                <p>Office profiles currently available in this workspace.</p>
               </div>
               <ul>
                 {seededWorkspace.memberships.map((membership) => (

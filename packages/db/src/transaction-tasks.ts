@@ -1678,7 +1678,7 @@ function getTaskWorkflowInvalidationReason(task: TaskWithRelations, evidence: Ta
 
   return {
     workflowReason: "document_workflow_invalidated",
-    detail: "Document workflow conditions caused reopen"
+    detail: "Required documents or signatures changed"
   };
 }
 
@@ -1802,7 +1802,7 @@ export async function reconcileTransactionTaskDocumentWorkflow(
     details: [
       input.reason,
       invalidation.detail,
-      "Task reopened because required workflow conditions are no longer satisfied"
+      "Task reopened because its required items are no longer complete"
     ],
     changes: [
       buildTaskChange("Workflow status", getDbTaskStatusLabel(existingTask.status), getDbTaskStatusLabel(updated.status)),

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button, EmptyState, FormField, StatusBadge, TextareaInput, TextInput } from "@acre/ui";
+import { Button, EmptyState, FormField, SelectInput, StatusBadge, TextareaInput, TextInput } from "@acre/ui";
 import type { OfficeIncomingUpdate } from "@acre/db";
 
 type TransactionIncomingUpdatesCardProps = {
@@ -15,8 +15,30 @@ type NewIncomingUpdateState = {
   sourceSystem: string;
   sourceReference: string;
   summary: string;
-  payload: string;
+  closingDate: string;
+  status: string;
+  notes: string;
 };
+
+const incomingUpdateStatusOptions = [
+  { value: "", label: "No status change" },
+  { value: "opportunity", label: "Opportunity" },
+  { value: "active", label: "Active" },
+  { value: "pending", label: "Pending" },
+  { value: "closed", label: "Closed" },
+  { value: "cancelled", label: "Cancelled" }
+] as const;
+
+function buildEmptyIncomingUpdateState(): NewIncomingUpdateState {
+  return {
+    sourceSystem: "Outside update",
+    sourceReference: "",
+    summary: "",
+    closingDate: "",
+    status: "",
+    notes: ""
+  };
+}
 
 function getIncomingUpdateTone(statusKey: OfficeIncomingUpdate["statusKey"]) {
   if (statusKey === "applied" || statusKey === "accepted") {
@@ -45,35 +67,28 @@ export function TransactionIncomingUpdatesCard({
   canReviewIncomingUpdates
 }: TransactionIncomingUpdatesCardProps) {
   const router = useRouter();
-  const [newUpdate, setNewUpdate] = useState<NewIncomingUpdateState>({
-    sourceSystem: "Manual test feed",
-    sourceReference: "",
-    summary: "",
-    payload: JSON.stringify(
-      {
-        closingDate: "2026-03-25",
-        status: "pending"
-      },
-      null,
-      2
-    )
-  });
+  const [newUpdate, setNewUpdate] = useState<NewIncomingUpdateState>(buildEmptyIncomingUpdateState);
   const [pendingAction, setPendingAction] = useState<string | null>(null);
   const [error, setError] = useState("");
 
   async function handleCreateIncomingUpdate() {
-    let parsedPayload: Record<string, unknown>;
-
-    try {
-      parsedPayload = JSON.parse(newUpdate.payload || "{}") as Record<string, unknown>;
-    } catch {
-      setError("Payload must be valid JSON.");
+    if (!newUpdate.sourceSystem.trim() || !newUpdate.sourceReference.trim() || !newUpdate.summary.trim()) {
+      setError("Add a source, reference, and summary before saving.");
       return;
     }
 
-    if (!newUpdate.sourceSystem.trim() || !newUpdate.sourceReference.trim() || !newUpdate.summary.trim()) {
-      setError("Source system, reference, and summary are required.");
-      return;
+    const payload: Record<string, unknown> = {};
+
+    if (newUpdate.closingDate) {
+      payload.closingDate = newUpdate.closingDate;
+    }
+
+    if (newUpdate.status) {
+      payload.status = newUpdate.status;
+    }
+
+    if (newUpdate.notes.trim()) {
+      payload.notes = newUpdate.notes.trim();
     }
 
     setPendingAction("create");
@@ -89,7 +104,7 @@ export function TransactionIncomingUpdatesCard({
           sourceSystem: newUpdate.sourceSystem,
           sourceReference: newUpdate.sourceReference,
           summary: newUpdate.summary,
-          payload: parsedPayload
+          payload
         })
       });
 
@@ -98,19 +113,7 @@ export function TransactionIncomingUpdatesCard({
         throw new Error(body?.error ?? "Incoming update could not be created.");
       }
 
-      setNewUpdate({
-        sourceSystem: "Manual test feed",
-        sourceReference: "",
-        summary: "",
-        payload: JSON.stringify(
-          {
-            closingDate: "2026-03-25",
-            status: "pending"
-          },
-          null,
-          2
-        )
-      });
+      setNewUpdate(buildEmptyIncomingUpdateState());
       router.refresh();
     } catch (createError) {
       setError(createError instanceof Error ? createError.message : "Incoming update could not be created.");
@@ -150,7 +153,7 @@ export function TransactionIncomingUpdatesCard({
       <div className="bm-card-head">
         <div>
           <h3>Incoming updates</h3>
-          <span>Review future Folio-like external updates before applying safe mapped changes to the transaction.</span>
+          <span>Review updates that came in from outside the office before applying them to this transaction.</span>
         </div>
       </div>
 
@@ -206,8 +209,8 @@ export function TransactionIncomingUpdatesCard({
           ))
         ) : (
           <EmptyState
-            description="Create a manual test update now so the transaction workflow can review, accept, or reject it."
-            title="No incoming updates for this transaction."
+            description="Updates sent from outside the office will appear here for review."
+            title="No incoming updates yet"
           />
         )}
       </div>
@@ -215,17 +218,17 @@ export function TransactionIncomingUpdatesCard({
       {canReviewIncomingUpdates ? (
         <div className="bm-document-upload-panel">
           <div className="bm-card-head bm-card-head-inline">
-            <h3>Create incoming update</h3>
+            <h3>Add update</h3>
           </div>
 
           <div className="bm-document-upload-grid">
-            <FormField label="Source system">
+            <FormField label="Source">
               <TextInput
                 onChange={(event) => setNewUpdate((current) => ({ ...current, sourceSystem: event.target.value }))}
                 value={newUpdate.sourceSystem}
               />
             </FormField>
-            <FormField label="Source reference">
+            <FormField label="Reference">
               <TextInput
                 onChange={(event) => setNewUpdate((current) => ({ ...current, sourceReference: event.target.value }))}
                 value={newUpdate.sourceReference}
@@ -237,18 +240,37 @@ export function TransactionIncomingUpdatesCard({
                 value={newUpdate.summary}
               />
             </FormField>
-            <FormField className="bm-detail-field-wide" label="Payload JSON">
+            <FormField label="Updated status">
+              <SelectInput
+                onChange={(event) => setNewUpdate((current) => ({ ...current, status: event.target.value }))}
+                value={newUpdate.status}
+              >
+                {incomingUpdateStatusOptions.map((option) => (
+                  <option key={option.label} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </SelectInput>
+            </FormField>
+            <FormField label="Closing date">
+              <TextInput
+                onChange={(event) => setNewUpdate((current) => ({ ...current, closingDate: event.target.value }))}
+                type="date"
+                value={newUpdate.closingDate}
+              />
+            </FormField>
+            <FormField className="bm-detail-field-wide" label="Notes">
               <TextareaInput
-                onChange={(event) => setNewUpdate((current) => ({ ...current, payload: event.target.value }))}
-                rows={6}
-                value={newUpdate.payload}
+                onChange={(event) => setNewUpdate((current) => ({ ...current, notes: event.target.value }))}
+                rows={4}
+                value={newUpdate.notes}
               />
             </FormField>
           </div>
 
           <div className="bm-document-edit-actions">
             <Button disabled={pendingAction === "create"} onClick={handleCreateIncomingUpdate}>
-              {pendingAction === "create" ? "Creating..." : "Create incoming update"}
+              {pendingAction === "create" ? "Saving..." : "Save update"}
             </Button>
           </div>
         </div>

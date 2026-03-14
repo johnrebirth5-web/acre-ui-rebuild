@@ -80,7 +80,7 @@ function getTeamTone(isActive: boolean) {
 }
 
 function getSecurityTone(value: string) {
-  return value === "Not available" ? "warning" as const : value === "No in-app password" ? "neutral" as const : "success" as const;
+  return value === "Coming soon" ? "warning" as const : value === "Managed with office access" ? "neutral" as const : "success" as const;
 }
 
 export function OfficeAccountClient({ snapshot }: OfficeAccountClientProps) {
@@ -202,7 +202,7 @@ export function OfficeAccountClient({ snapshot }: OfficeAccountClientProps) {
                   {pendingAction === "profile" ? "Saving..." : "Save profile"}
                 </Button>
               }
-              subtitle="Safe self-service fields only. Email, role, office access, and team assignment stay read-only here."
+              subtitle="Update your personal contact details here. Role, office access, and team assignment are managed separately."
               title="Profile"
             >
               <div className="office-account-profile-shell">
@@ -274,7 +274,7 @@ export function OfficeAccountClient({ snapshot }: OfficeAccountClientProps) {
                     </SelectInput>
                   </FormField>
 
-                  <FormField className="office-form-grid-span-3" helper="Email stays read-only because the current local login flow is membership-email based." label="Email">
+                  <FormField className="office-form-grid-span-3" helper="Email is managed with your office access." label="Email">
                     <TextInput disabled value={snapshot.profile.email} />
                   </FormField>
 
@@ -289,7 +289,7 @@ export function OfficeAccountClient({ snapshot }: OfficeAccountClientProps) {
           </form>
 
           <SectionCard
-            subtitle="Assignment and access context stay visible here, but manager-controlled access lives in Office Admin."
+            subtitle="Your office, role, and team assignments are shown here. Access changes are handled by an administrator."
             title="Office / Team"
           >
             <SecondaryMetaList
@@ -337,7 +337,7 @@ export function OfficeAccountClient({ snapshot }: OfficeAccountClientProps) {
                   {pendingAction === "notifications" ? "Saving..." : "Save preferences"}
                 </Button>
               }
-              subtitle="Only the in-app inbox is implemented today. Email, SMS, and push remain unavailable."
+              subtitle="Choose which updates appear in your Acre inbox. Additional delivery channels will be added here over time."
               title="Notifications"
             >
               <SecondaryMetaList
@@ -396,7 +396,7 @@ export function OfficeAccountClient({ snapshot }: OfficeAccountClientProps) {
                   />
                   <div>
                     <strong>Offer notifications</strong>
-                    <p>Offer created, received, and expiring-soon alerts when the offer workflow applies.</p>
+                    <p>Offer created, received, and expiring-soon alerts when offer activity applies.</p>
                   </div>
                 </label>
               </div>
@@ -405,7 +405,7 @@ export function OfficeAccountClient({ snapshot }: OfficeAccountClientProps) {
                 <div className="office-account-channel-row">
                   <div>
                     <strong>In-app inbox</strong>
-                    <p>Implemented and controlled by the toggles above.</p>
+                    <p>Managed by the toggles above.</p>
                   </div>
                   <StatusBadge tone={notificationState.inAppEnabled ? "success" : "neutral"}>
                     {notificationState.inAppEnabled ? "Enabled" : "Disabled"}
@@ -414,18 +414,18 @@ export function OfficeAccountClient({ snapshot }: OfficeAccountClientProps) {
 
                 <div className="office-account-channel-row">
                   <div>
-                    <strong>Email</strong>
-                    <p>Not implemented in the current Back Office platform.</p>
+                    <strong>Email delivery</strong>
+                    <p>Will appear here when email notices are enabled for the office.</p>
                   </div>
-                  <StatusBadge tone="warning">Unavailable</StatusBadge>
+                  <StatusBadge tone="warning">Coming soon</StatusBadge>
                 </div>
 
                 <div className="office-account-channel-row">
                   <div>
-                    <strong>SMS / push</strong>
-                    <p>No mobile or push delivery infrastructure exists yet.</p>
+                    <strong>Text / push</strong>
+                    <p>Mobile delivery options will appear here when they are ready.</p>
                   </div>
-                  <StatusBadge tone="warning">Unavailable</StatusBadge>
+                  <StatusBadge tone="warning">Coming soon</StatusBadge>
                 </div>
               </div>
 
@@ -436,10 +436,10 @@ export function OfficeAccountClient({ snapshot }: OfficeAccountClientProps) {
           <SectionCard
             actions={
               <Link className="office-button office-button-secondary office-button-sm" href="/office/activity?objectType=auth">
-                Open auth activity
+                View sign-in activity
               </Link>
             }
-            subtitle="Truthful account security context for the current local Office auth flow."
+            subtitle="Review your sign-in and session details for this account."
             title="Security"
           >
             <div className="office-account-security-list">
@@ -485,7 +485,7 @@ export function OfficeAccountClient({ snapshot }: OfficeAccountClientProps) {
             </div>
 
             <p className="office-account-security-note">
-              Password reset and 2-step setup are not available in-app yet because the current Office access flow still uses local membership-email sign-in.
+              Password updates and two-step verification will appear here as account access tools expand.
             </p>
           </SectionCard>
         </div>

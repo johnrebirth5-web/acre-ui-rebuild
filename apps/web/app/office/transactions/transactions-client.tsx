@@ -558,7 +558,7 @@ export function TransactionsClient({
     <>
       <OfficeListPage
         className="bm-transactions-page office-transactions-list-page"
-        description="Operational transaction list with query-param filters for status, owner, team, type, and date-window drill-down."
+        description="Search, filter, and review transactions by status, owner, team, type, and date."
         eyebrow="Transactions"
         filters={transactionFilters}
         footer={transactionFooter}
@@ -592,7 +592,7 @@ export function TransactionsClient({
                     {transaction.status === "Opportunity"
                       ? "Early-stage pipeline item."
                       : transaction.status === "Active"
-                        ? "Live transaction workflow in motion."
+                        ? "Currently in progress."
                         : transaction.status === "Pending"
                           ? "Awaiting closing and documentation steps."
                           : transaction.status === "Closed"

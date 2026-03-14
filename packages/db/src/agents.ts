@@ -72,8 +72,8 @@ const defaultOnboardingItems = [
   },
   {
     category: "Training",
-    title: "Review transaction workflow basics",
-    description: "Walk through the Back Office transaction, document, and task flow before going live.",
+    title: "Review transaction basics",
+    description: "Walk through the office transaction, document, and task process before going live.",
     dueDaysOffset: 7
   }
 ] as const;

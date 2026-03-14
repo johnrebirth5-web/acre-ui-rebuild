@@ -898,8 +898,8 @@ export async function updateTransactionStatus(input: UpdateTransactionStatusInpu
           objectLabel: buildTransactionObjectLabel(saved),
           changes: statusChange ? [statusChange] : [],
           details: [
-            ...(nextStatus === "closed" ? ["Closed workflow reached"] : []),
-            ...(nextStatus === "cancelled" ? ["Cancelled workflow reached"] : [])
+            ...(nextStatus === "closed" ? ["Marked closed"] : []),
+            ...(nextStatus === "cancelled" ? ["Marked cancelled"] : [])
           ]
         }
       });

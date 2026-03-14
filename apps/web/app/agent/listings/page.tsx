@@ -11,19 +11,18 @@ export default function AgentListingsPage() {
           <Badge tone="accent">Listings</Badge>
           <h2>Agent marketing layer</h2>
           <p>
-            This page is where listing search, poster generation, tracked share links, and custom notes converge. The
-            final version will support both natural-language discovery and structured listing filters.
+            This page brings listing search, marketing assets, share links, and custom notes together in one place.
           </p>
         </div>
         <div className="metric-strip">
-          <span>Responsive target</span>
-          <strong>Single-column mobile, split workflow desktop.</strong>
+          <span>Designed for every screen</span>
+          <strong>Single-column mobile, split view on desktop.</strong>
           <p>Poster, QR, and share actions need one-thumb reach on phone.</p>
         </div>
       </section>
 
       <section className="workspace-grid">
-        <Panel title="Suggested inventory" subtitle="Seeded from the structured listing model defined in the PRD.">
+        <Panel title="Suggested inventory" subtitle="A quick view of the listings ready to share and market.">
           <div className="list-column">
             {listingFeed.map((listing) => (
               <article className="list-row" key={listing.id}>
@@ -35,7 +34,7 @@ export default function AgentListingsPage() {
                 <p>{listing.hook}</p>
                 <div className="list-row-meta">
                   <span>{listing.price}</span>
-                  <span>Tracked link ready</span>
+                  <span>Share link ready</span>
                   <span>{listing.trackedClicks} clicks</span>
                 </div>
               </article>
@@ -43,11 +42,11 @@ export default function AgentListingsPage() {
           </div>
         </Panel>
 
-        <Panel title="Output modes" subtitle="The listings module is more than inventory; it is a marketing terminal.">
+        <Panel title="Output modes" subtitle="The listings area supports both inventory review and marketing actions.">
           <div className="action-grid">
             <article className="action-card">
-              <strong>Tracked WeChat link</strong>
-              <p>Agent-specific share link with click tracking and later gated lead capture.</p>
+              <strong>WeChat share link</strong>
+              <p>Agent-specific share link with activity tracking.</p>
             </article>
             <article className="action-card">
               <strong>Poster export</strong>

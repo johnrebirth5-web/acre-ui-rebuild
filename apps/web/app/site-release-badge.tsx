@@ -1,7 +1,7 @@
 "use client";
 
-const siteVersionLabel = "v0.1";
-const siteReleaseStageLabel = "Beta";
+const siteVersionLabel = "Acre";
+const siteReleaseStageLabel = "Office system";
 const siteCopyrightLabel = "© 2021-2026 Acre NY Realty Inc.";
 
 type SiteReleaseBadgeProps = {

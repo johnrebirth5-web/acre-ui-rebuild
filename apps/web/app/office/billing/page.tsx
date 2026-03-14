@@ -36,7 +36,7 @@ export default async function OfficeBillingPage() {
             <SummaryChip label="Outstanding balance" tone="accent" value={snapshot.summary.outstandingBalanceLabel} />
           </PageHeaderSummary>
         }
-        description="Self-service billing visibility for outstanding charges, payments, credits, statements, and payment-method references. Live checkout and ACH execution are not implemented."
+        description="Review charges, payments, credits, statements, and saved payment methods for your membership."
         eyebrow="Billing"
         title="My billing"
       />

@@ -272,12 +272,12 @@ export function OfficeTasksClient({
 
       if (!response.ok) {
         const body = (await response.json().catch(() => null)) as { error?: string } | null;
-        throw new Error(body?.error ?? "Failed to update task workflow.");
+        throw new Error(body?.error ?? "Failed to update task status.");
       }
 
       router.refresh();
     } catch (workflowError) {
-      setError(workflowError instanceof Error ? workflowError.message : "Failed to update task workflow.");
+      setError(workflowError instanceof Error ? workflowError.message : "Failed to update task status.");
     } finally {
       setPendingAction(null);
     }

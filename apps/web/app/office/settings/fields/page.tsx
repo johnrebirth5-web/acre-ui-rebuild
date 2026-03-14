@@ -29,7 +29,7 @@ export default async function OfficeSettingsFieldsPage() {
             <SummaryChip label="Visible fields" value={snapshot.summary.visibleFieldCount} />
           </PageHeaderSummary>
         }
-        description="Transaction workflow requirements for contact roles and field visibility/requiredness in the current office scope."
+        description="Choose which contact roles are required and which transaction fields are shown or required."
         eyebrow="Office admin"
         title="Fields"
       />

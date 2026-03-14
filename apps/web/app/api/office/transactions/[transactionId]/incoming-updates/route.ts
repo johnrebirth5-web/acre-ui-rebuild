@@ -32,7 +32,7 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
     | null;
 
   if (!body?.sourceSystem?.trim() || !body.sourceReference?.trim() || !body.summary?.trim()) {
-    return NextResponse.json({ error: "Source system, source reference, and summary are required." }, { status: 400 });
+    return NextResponse.json({ error: "Source, reference, and summary are required." }, { status: 400 });
   }
 
   try {

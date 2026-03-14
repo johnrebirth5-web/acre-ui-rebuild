@@ -9114,6 +9114,29 @@ a {
   backdrop-filter: blur(16px);
 }
 
+.office-detail-anchor-context {
+  display: inline-flex;
+  min-width: 124px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: 0 12px 0 4px;
+}
+
+.office-detail-anchor-context span {
+  color: var(--office-text-muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.office-detail-anchor-context strong {
+  color: var(--office-text);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
 .office-detail-anchor-nav a {
   display: inline-flex;
   align-items: center;
@@ -9124,6 +9147,12 @@ a {
   color: var(--office-text-muted);
   font-size: 0.8rem;
   font-weight: 700;
+}
+
+.office-detail-anchor-nav a.is-active {
+  border-color: color-mix(in srgb, var(--office-accent) 22%, var(--office-border));
+  background: color-mix(in srgb, var(--office-accent-soft) 62%, #ffffff);
+  color: var(--office-text);
 }
 
 .office-detail-anchor-nav a:hover,

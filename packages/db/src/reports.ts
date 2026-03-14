@@ -1366,7 +1366,7 @@ export async function getOfficeReportsSnapshot(input: GetOfficeReportsSnapshotIn
     const key = calculation.commissionPlanId ?? "__unassigned_plan__";
     const current = commissionPlanMap.get(key) ?? {
       commissionPlanId: calculation.commissionPlanId,
-      planName: calculation.commissionPlan?.name ?? "No persisted plan",
+      planName: calculation.commissionPlan?.name ?? "No assigned plan",
       calculationCount: 0,
       statementAmount: 0
     };
@@ -1482,17 +1482,17 @@ export async function getOfficeReportsSnapshot(input: GetOfficeReportsSnapshotIn
   const overdueEmdCount = earnestMoneyRecords.filter((record) => record.status === "overdue").length;
 
   const limitations = [
-    "Transaction date range filters by transaction created date; commissions use calculated date; accounting uses accounting date; EMD uses due date.",
-    "Team rollups use the owner's active team memberships; owners on multiple teams will appear in multiple team rows."
+    "Date filters follow the main date used by each section: created date for transactions, calculated date for commissions, accounting date for accounting, and due date for EMD.",
+    "Team totals use each owner's active team assignments, so an owner can appear in more than one team row."
   ];
 
   if (input.commissionPlanId?.trim()) {
     limitations.push(
-      "Commission plan filters depend on persisted commission calculations; transactions without calculations are excluded from that slice."
+      "Commission plan filters apply only to transactions that already have commission calculations."
     );
   }
 
-  limitations.push("Contacts needing follow-up are scoped only by office / owner / team and are not sliced by commission plan.");
+  limitations.push("Contacts needing follow-up are filtered by office, owner, and team only.");
 
   return {
     filters: {

@@ -13,8 +13,7 @@ export default function AgentDashboardPage() {
           <Badge tone="accent">Agent Dashboard</Badge>
           <h1>One surface for today&apos;s follow-up, listing activity, and next actions.</h1>
           <p>
-            This layout is optimized for fast scanning on desktop and compact action access on mobile. The same route
-            structure will later connect to live CRM, link tracking, and AI workflows.
+            This layout is designed for quick scanning on desktop and compact action access on mobile.
           </p>
           <div className="hero-kpis">
             {snapshot.metrics.slice(0, 3).map((metric) => (
@@ -34,7 +33,7 @@ export default function AgentDashboardPage() {
 
       <section className="workspace-grid">
         <div className="panel-stack">
-          <Panel title="Priority queue" subtitle="Reminder logic will later come from OCR intake and last-contact anchors.">
+          <Panel title="Priority queue" subtitle="See the follow-ups and reminders that need attention first.">
             <div className="list-column">
               {snapshot.tasks.map((task) => (
                 <article className="list-row" key={task.id}>
@@ -53,7 +52,7 @@ export default function AgentDashboardPage() {
             </div>
           </Panel>
 
-          <Panel title="Featured inventory" subtitle="These cards preview how structured listings data will surface in the agent experience.">
+          <Panel title="Featured inventory" subtitle="A quick view of the listings that matter most right now.">
             <div className="list-column">
               {snapshot.listings.map((listing) => (
                 <article className="list-row" key={listing.id}>
@@ -65,7 +64,7 @@ export default function AgentDashboardPage() {
                   <p>{listing.hook}</p>
                   <div className="list-row-meta">
                     <span>{listing.price}</span>
-                    <span>{listing.trackedClicks} tracked clicks</span>
+                    <span>{listing.trackedClicks} listing views</span>
                   </div>
                 </article>
               ))}
@@ -73,12 +72,12 @@ export default function AgentDashboardPage() {
           </Panel>
         </div>
 
-        <Panel title="Agent quick stack" subtitle="The core utility set pulled from your PRD and AI tool plan.">
+        <Panel title="Agent quick stack" subtitle="A quick view of the tools and access available in this workspace.">
           <div className="stats-grid">
-            <StatCard label="Role" value={access.label} hint={`${access.permissionCount} enabled permissions in MVP.`} />
+            <StatCard label="Role" value={access.label} hint={`${access.permissionCount} enabled permissions`} />
             <StatCard label="Listing writer" value="Ready" hint="Multi-output copy and marketing scripts." />
             <StatCard label="Reply assistant" value="Ready" hint="Buyer, seller, renter, and objection templates." />
-            <StatCard label="Knowledge base" value="RAG-ready" hint="Internal Acre answers, not generic chat." />
+            <StatCard label="Knowledge base" value="Ready" hint="Answers and resources prepared for the Acre team." />
           </div>
         </Panel>
       </section>

@@ -382,12 +382,14 @@ export function TransactionFormsSignaturesCard({
                 ) : null}
 
                 <div className="bm-form-payload-preview">
-                  {Object.entries(form.generatedPayload).slice(0, 8).map(([key, value]) => (
-                    <div className="bm-form-payload-item" key={key}>
-                      <span>{key}</span>
-                      <strong>{value || "—"}</strong>
-                    </div>
-                  ))}
+                  <div className="bm-form-payload-item">
+                    <span>Prepared fields</span>
+                    <strong>{Object.keys(form.generatedPayload).length}</strong>
+                  </div>
+                  <div className="bm-form-payload-item">
+                    <span>Ready for review</span>
+                    <strong>Yes</strong>
+                  </div>
                 </div>
 
                 <div className="bm-form-signature-list">
@@ -523,7 +525,7 @@ export function TransactionFormsSignaturesCard({
           })
         ) : (
           <EmptyState
-            description="Use a seeded template to prepare a transaction form packet and start an internal signature workflow."
+            description="Start a form packet from a saved template and send it out for signature."
             title="No forms created for this transaction yet."
           />
         )}

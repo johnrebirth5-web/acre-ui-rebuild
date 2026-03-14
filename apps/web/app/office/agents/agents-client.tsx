@@ -230,7 +230,7 @@ export function OfficeAgentsClient({
 
   return (
     <ListPageStack className="office-agents-layout">
-      <ListPageTableSection filters={rosterFilters} footer={rosterFooter} subtitle="Search and filter the current office roster without leaving the back-office workflow." title="Agent roster">
+      <ListPageTableSection filters={rosterFilters} footer={rosterFooter} subtitle="Search and filter the current office roster." title="Agent roster">
         {snapshot.rows.length ? (
           <DataTable className="office-table office-agents-roster-table">
             <DataTableHeader className="office-agents-roster-head">
@@ -425,7 +425,7 @@ export function OfficeAgentsClient({
         </div>
 
         {!canManageAgents && !canManageOnboarding && !canManageGoals && !canManageTeams ? (
-          <p className="office-form-helper">This roster is read-only for your current role.</p>
+          <p className="office-form-helper">You can view this roster, but only certain roles can make changes.</p>
         ) : null}
       </ListPageSection>
     </ListPageStack>

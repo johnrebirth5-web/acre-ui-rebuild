@@ -1532,7 +1532,7 @@ export async function getOfficeBillingSnapshot(input: GetOfficeBillingSnapshotIn
     notices.push({
       tone: "warning",
       title: "Outstanding balance recorded",
-      description: `You currently have ${formatCurrency(outstandingBalance)} in open charges. Self-service checkout is not implemented; office accounting records payments manually.`
+      description: `You currently have ${formatCurrency(outstandingBalance)} in open charges. Payments posted by the office will appear here after they are recorded.`
     });
   }
 
@@ -1546,7 +1546,7 @@ export async function getOfficeBillingSnapshot(input: GetOfficeBillingSnapshotIn
     notices.push({
       tone: "neutral",
       title: "No payment method on file",
-      description: "You can store a masked payment-method reference below, but no live card or ACH processing is connected in this MVP."
+      description: "You can save a payment method reference below for billing coordination."
     });
   }
 
@@ -1554,7 +1554,7 @@ export async function getOfficeBillingSnapshot(input: GetOfficeBillingSnapshotIn
     notices.push({
       tone: "accent",
       title: "Monthly statement summaries available",
-      description: "Statements are generated live from the current billing ledger below. Downloadable PDFs are not implemented yet."
+      description: "Statements are available below for quick review."
     });
   }
 
@@ -1622,9 +1622,9 @@ export async function getOfficeBillingSnapshot(input: GetOfficeBillingSnapshotIn
     })),
     recentActivity,
     limitations: [
-      "Self-service checkout and ACH capture are not implemented. Payments are recorded through office accounting workflows.",
-      "Statements below are live on-screen monthly summaries. Downloadable PDFs are not available in this MVP.",
-      "Payment methods store only masked references and auto-pay flags. Raw card or bank credentials are never stored here."
+      "Payments are recorded by the office team and reflected here once they are posted.",
+      "Statements below show monthly summaries for quick review on screen.",
+      "Saved payment methods keep only basic reference details for billing coordination."
     ]
   };
 }

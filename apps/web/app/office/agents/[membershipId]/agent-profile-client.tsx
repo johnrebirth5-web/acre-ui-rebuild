@@ -565,7 +565,7 @@ export function AgentProfileClient({
           <StatCard hint="active assigned plan when available" label="Active plan" value={snapshot.commissions.activePlanLabel || "Manual / unassigned"} />
           <StatCard hint="rows already in statement-ready status" label="Statement ready" value={snapshot.commissions.statementReadyLabel} />
           <StatCard hint="rows that can move into payout handling" label="Payable" value={snapshot.commissions.payableLabel} />
-          <StatCard hint="rows already marked paid in the commission workflow" label="Paid" value={snapshot.commissions.paidLabel} />
+          <StatCard hint="rows already marked paid" label="Paid" value={snapshot.commissions.paidLabel} />
         </div>
 
         {snapshot.commissions.activePlanSourceLabel ? (

@@ -97,7 +97,7 @@ export function OfficeSettingsFieldsClient({ snapshot, canManageFields }: Office
     <ListPageStack>
       {submitError ? <p className="office-inline-error">{submitError}</p> : null}
 
-      <ListPageSection subtitle="These roles are required for the office workflow before a transaction is considered fully staffed." title="Required contact roles">
+      <ListPageSection subtitle="Choose which roles must be filled before a transaction is ready to move forward." title="Required contact roles">
         <div className="office-settings-checkbox-grid">
           {snapshot.contactRoleSettings.map((entry) => (
             <CheckboxField className="office-settings-checkbox-item" key={entry.role} label={entry.label}>
@@ -114,7 +114,7 @@ export function OfficeSettingsFieldsClient({ snapshot, canManageFields }: Office
 
       <ListPageTableSection
         footer={<ListPageFooter summary={`${snapshot.transactionFieldSettings.length} configurable transaction fields`} />}
-        subtitle="Control which transaction fields stay visible and which are enforced as required in Back Office."
+        subtitle="Choose which transaction fields are shown and which ones must be completed."
         title="Transaction field behavior"
       >
         <DataTable className="office-table">

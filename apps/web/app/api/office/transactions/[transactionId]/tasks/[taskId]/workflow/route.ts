@@ -106,13 +106,13 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
                 : null;
 
     if (!task) {
-      return NextResponse.json({ error: "Task not found or workflow action failed." }, { status: 404 });
+      return NextResponse.json({ error: "Task not found or action could not be completed." }, { status: 404 });
     }
 
     return NextResponse.json({ task });
   } catch (error) {
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : "Workflow action failed." },
+      { error: error instanceof Error ? error.message : "Action could not be completed." },
       { status: 400 }
     );
   }

@@ -28,7 +28,7 @@ export default async function OfficeSettingsPage() {
             <SummaryChip label="Teams" value={snapshot.summary.teamsCount} />
           </PageHeaderSummary>
         }
-        description="Administrative controls for user access, team configuration, transaction workflow requirements, and reusable checklists."
+        description="Manage users, teams, required roles, and reusable checklists for this office."
         eyebrow="Office admin"
         title="Settings"
       />
@@ -38,14 +38,14 @@ export default async function OfficeSettingsPage() {
       <section className="office-settings-summary-grid">
         <StatCard hint="Current org scope" label="Users" value={snapshot.summary.usersCount} />
         <StatCard hint={`${snapshot.summary.activeUsersCount} active`} label="Teams" value={snapshot.summary.teamsCount} />
-        <StatCard hint="Transaction workflow" label="Required roles" value={snapshot.summary.requiredRoleCount} />
+        <StatCard hint="Transaction setup" label="Required roles" value={snapshot.summary.requiredRoleCount} />
         <StatCard hint="Reusable task templates" label="Checklists" value={snapshot.summary.checklistTemplateCount} />
       </section>
 
       <section className="office-settings-section-grid">
         <SectionCard subtitle="Roles, access state, and office assignment." title="Users">
           <p className="office-settings-copy">
-            Manage office access, role changes, and active/inactive membership status for the current Back Office organization.
+            Manage office access, role changes, and active or inactive status for the current office.
           </p>
           <Link className="office-settings-link" href="/office/settings/users">
             Open users
@@ -54,7 +54,7 @@ export default async function OfficeSettingsPage() {
 
         <SectionCard subtitle="Operational roster structure." title="Teams">
           <p className="office-settings-copy">
-            Create teams, manage active/inactive rosters, and assign or remove agents without leaving Back Office.
+            Create teams, manage active rosters, and assign or remove agents for this office.
           </p>
           <Link className="office-settings-link" href="/office/settings/teams">
             Open teams
@@ -63,7 +63,7 @@ export default async function OfficeSettingsPage() {
 
         <SectionCard subtitle="Required contact roles and transaction field behavior." title="Fields">
           <p className="office-settings-copy">
-            Define required transaction roles and field visibility/requiredness so operational workflows stop depending on hardcoded defaults.
+            Choose which roles are required and which fields appear or must be completed on a transaction.
           </p>
           <Link className="office-settings-link" href="/office/settings/fields">
             Open field settings
@@ -72,7 +72,7 @@ export default async function OfficeSettingsPage() {
 
         <SectionCard subtitle="Reusable task templates for sales, rentals, and office defaults." title="Checklists">
           <p className="office-settings-copy">
-            Create and manage reusable checklist templates that describe grouped task rows, due offsets, and document requirements.
+            Create and manage reusable checklist templates with grouped tasks, due dates, and document requirements.
           </p>
           <Link className="office-settings-link" href="/office/settings/checklists">
             Open checklist templates

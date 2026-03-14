@@ -1185,7 +1185,7 @@ export function AgentBillingPanel({
               </div>
 
               <footer className="bm-transaction-modal-footer">
-                <span>This MVP stores only a billing-method reference, never raw card or bank credentials.</span>
+                <span>This saves a payment method reference for billing records.</span>
                 <button className="bm-create-button" disabled={isSubmitting} type="submit">
                   {isSubmitting ? "Saving..." : paymentMethodFormState.paymentMethodId ? "Save payment method" : "Create payment method"}
                 </button>
@@ -1288,7 +1288,7 @@ export function AgentBillingPanel({
               </div>
 
               <footer className="bm-transaction-modal-footer">
-                <span>Payments are recorded internally and applied to selected invoices. No external gateway capture is implied.</span>
+                <span>Payments recorded here are applied to the selected invoices and reflected in the balance.</span>
                 <button className="bm-create-button" disabled={isSubmitting} type="submit">
                   {isSubmitting ? "Saving..." : "Record payment"}
                 </button>

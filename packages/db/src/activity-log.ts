@@ -1086,7 +1086,7 @@ function getSummary(action: string, payload: ParsedActivityPayload) {
       return appendActionSourceSummary("completed a transaction task", payload);
     case activityLogActions.transactionTaskReopened:
       return payload.workflowReason === "document_workflow_invalidated"
-        ? "reopened a transaction task because document workflow became invalid"
+        ? "reopened a transaction task because its required documents or signatures changed"
         : appendActionSourceSummary("reopened a transaction task", payload);
     case activityLogActions.followUpTaskCreated:
       return "created a follow-up task";
@@ -2011,7 +2011,7 @@ async function listOperationalAlerts(input: {
       severityLabel: getSeverityLabel("high"),
       objectType: "document",
       title: "Required document is still missing",
-      summary: `${task.title} still needs a document before the workflow can move forward.`,
+      summary: `${task.title} still needs a document before it can be completed.`,
       objectLabel: `${task.transaction.title} · ${task.transaction.address}, ${task.transaction.city}, ${task.transaction.state}`,
       href: `/office/transactions/${task.transactionId}#transaction-documents`,
       referenceLabel: task.dueAt ? buildAlertReferenceLabel("Due date", task.dueAt) : "No due date",
