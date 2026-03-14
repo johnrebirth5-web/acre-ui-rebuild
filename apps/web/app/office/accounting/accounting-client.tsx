@@ -580,11 +580,12 @@ export function OfficeAccountingClient({
       </nav>
 
       <ListPageSection
+        className="office-accounting-overview"
         id="accounting-overview"
         subtitle="Review live ledger metrics, narrow the current scope, and jump into accounting entries without leaving the list workspace."
         title="Accounting workbench"
       >
-        <ListPageStatsGrid>
+        <ListPageStatsGrid className="office-accounting-kpi-grid">
           <StatCard hint="Invoices currently in the filtered accounting window." label="Total invoices" value={snapshot.overview.totalInvoices} />
           <StatCard hint="Outstanding bills still open for payment." label="Open bills" value={snapshot.overview.openBills} />
           <StatCard hint="Cash-in recorded inside the current result set." label="Received payments" value={snapshot.overview.receivedPaymentsLabel} />
@@ -597,7 +598,7 @@ export function OfficeAccountingClient({
 
         <ListPageFilters
           as="form"
-          className="office-report-filters office-list-filters"
+          className="office-report-filters office-list-filters office-accounting-filters"
           onSubmit={(event) => {
             event.preventDefault();
             navigateWithFilters({ ...filterState, entryId: "" });
@@ -679,7 +680,7 @@ export function OfficeAccountingClient({
       </ListPageSection>
 
       <ListPageSplit className="office-accounting-workspace">
-        <ListPageStack>
+        <ListPageStack className="office-accounting-main-column">
           <ListPageTableSection
             footer={<ListPageFooter summary={`${snapshot.transactions.length} accounting rows in the current filtered window`} />}
             id="accounting-ledger"
@@ -760,7 +761,7 @@ export function OfficeAccountingClient({
           </ListPageTableSection>
         </ListPageStack>
 
-        <ListPageStack>
+        <ListPageStack className="office-accounting-side-column">
           <ListPageSection
             subtitle={
               snapshot.selectedTransaction

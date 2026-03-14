@@ -588,11 +588,12 @@ export function AgentBillingPanel({
   return (
     <>
       <ListPageSection
+        className="office-accounting-panel office-accounting-billing-panel"
         id="agent-billing"
         subtitle="Ledger, recurring charges, payment methods, collections, and statement context for agent-side billing."
         title="Agent billing"
       >
-        <ListPageStatsGrid className="office-kpi-grid-compact">
+        <ListPageStatsGrid className="office-kpi-grid-compact office-accounting-kpi-grid">
           <StatCard hint={`${snapshot.overview.openChargesCount} open ledger item(s).`} label="Open charges" value={snapshot.overview.openChargesLabel} />
           <StatCard hint={`${snapshot.overview.pendingChargesCount} future or upcoming charges.`} label="Pending charges" value={snapshot.overview.pendingChargesLabel} />
           <StatCard hint="Applied from real accounting payment records." label="Received payments" value={snapshot.overview.receivedPaymentsLabel} />
@@ -603,7 +604,7 @@ export function AgentBillingPanel({
 
         <ListPageFilters
           as="form"
-          className="office-report-filters"
+          className="office-report-filters office-accounting-filters"
           onSubmit={(event) => {
             event.preventDefault();
             pushBillingFilters({});
@@ -710,8 +711,8 @@ export function AgentBillingPanel({
 
         {formError ? <p className="bm-transaction-submit-error">{formError}</p> : null}
 
-        <div className="office-dashboard-grid-wide bm-accounting-grid">
-          <div className="office-side-stack">
+        <div className="office-dashboard-grid-wide bm-accounting-grid office-accounting-workspace">
+          <div className="office-side-stack office-accounting-main-column">
             <ListPageSection subtitle={`${snapshot.ledgerRows.length} ledger row(s) in the current filtered window.`} title="Agent ledger">
               <div className="office-table">
                 <div className="office-table-header office-table-row office-table-row-agent-billing-ledger">
@@ -795,7 +796,7 @@ export function AgentBillingPanel({
             </ListPageSection>
           </div>
 
-          <div className="office-side-stack">
+          <div className="office-side-stack office-accounting-side-column">
             <ListPageSection subtitle={`${snapshot.paymentMethods.length} configured method(s).`} title="Payment methods">
               <div className="office-table">
                 <div className="office-table-header office-table-row office-table-row-payment-methods">

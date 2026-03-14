@@ -494,9 +494,13 @@ export function CommissionManagementPanel({
   }
 
   return (
-    <section className="office-accounting-panel" id="commissions">
-      <ListPageSection subtitle="Commission plans, assignments, calculated rows, and statement-ready visibility." title="Commission management">
-        <ListPageStatsGrid className="office-commission-kpi-grid">
+    <section className="office-accounting-panel office-accounting-commission-panel" id="commissions">
+      <ListPageSection
+        className="office-accounting-panel-shell"
+        subtitle="Commission plans, assignments, calculated rows, and statement-ready visibility."
+        title="Commission management"
+      >
+        <ListPageStatsGrid className="office-commission-kpi-grid office-accounting-kpi-grid">
           <StatCard hint="active plans configured for this office scope" label="Active plans" value={snapshot.overview.activePlansCount} />
           <StatCard hint="active plan assignments across agents and teams" label="Assignments" value={snapshot.overview.activeAssignmentsCount} />
           <StatCard hint="persisted commission rows in the current filter window" label="Calculated rows" value={snapshot.overview.calculatedRowsCount} />
@@ -507,7 +511,7 @@ export function CommissionManagementPanel({
 
         <ListPageFilters
           as="form"
-          className="office-report-filters"
+          className="office-report-filters office-accounting-filters"
           onSubmit={(event) => {
             event.preventDefault();
             pushNextHref(buildFilterHref(pathname, filterState));
@@ -607,8 +611,8 @@ export function CommissionManagementPanel({
           </div>
         </ListPageFilters>
 
-        <div className="office-detail-two-column">
-          <div className="office-side-stack">
+        <div className="office-detail-two-column office-accounting-workspace">
+          <div className="office-side-stack office-accounting-main-column">
             <ListPageSection subtitle="Reusable split/fee plans for transaction-side commission automation." title="Commission plans">
               <form className="office-form-grid office-form-grid-3" onSubmit={handleSavePlan}>
                 <FormField label="Existing plan">
@@ -851,7 +855,7 @@ export function CommissionManagementPanel({
             </ListPageSection>
           </div>
 
-          <div className="office-side-stack">
+          <div className="office-side-stack office-accounting-side-column">
             <ListPageSection subtitle="Persisted commission calculations, review queue, and payout-readiness workflow." title="Commission queue">
               <div className="office-table">
                 <div className="office-table-header office-table-row office-table-row-commission">

@@ -8081,12 +8081,12 @@ a {
 .office-agents-layout,
 .office-agent-profile-page {
   display: grid;
-  gap: 18px;
+  gap: 20px;
 }
 
 .office-agents-kpi-grid {
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 10px;
+  gap: 14px;
 }
 
 .office-agents-kpi-grid .office-stat-card,
@@ -8225,20 +8225,20 @@ a {
 .office-agents-team-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 12px;
+  gap: 14px;
 }
 
 .office-agents-team-inventory,
 .office-agents-team-admin-shell {
   display: grid;
-  gap: 12px;
+  gap: 14px;
 }
 
 .office-agents-team-create-form {
-  padding: 14px 16px;
+  padding: 16px 18px;
   border: 1px solid var(--office-border);
-  border-radius: var(--office-radius-md);
-  background: var(--office-surface-subtle);
+  border-radius: 12px;
+  background: var(--office-surface);
 }
 
 .office-agents-team-table {
@@ -8289,7 +8289,7 @@ a {
 .office-agents-onboarding-list,
 .office-agents-goals-grid {
   display: grid;
-  gap: 12px;
+  gap: 14px;
 }
 
 .office-agents-team-members {
@@ -8304,10 +8304,10 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 10px 12px;
+  padding: 14px 16px;
   border: 1px solid var(--office-border);
   border-radius: 12px;
-  background: var(--office-bg-muted);
+  background: var(--office-surface);
 }
 
 .office-agents-team-members li a,
@@ -8335,6 +8335,10 @@ a {
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
+  padding: 12px 14px;
+  border: 1px solid var(--office-border);
+  border-radius: 10px;
+  background: var(--office-surface-subtle);
   color: var(--office-text-muted);
   font-size: 0.88rem;
 }
@@ -8346,16 +8350,17 @@ a {
 .office-agents-profile-summary-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 12px;
+  gap: 14px;
 }
 
 .office-agents-profile-secondary-columns {
-  margin-top: 16px;
+  margin-top: 18px;
+  align-items: start;
 }
 
 .office-agents-agenda-panel {
   display: grid;
-  gap: 12px;
+  gap: 14px;
 }
 
 .office-agents-agenda-head {
@@ -8378,7 +8383,7 @@ a {
 .office-agents-agenda-list,
 .office-agents-template-list {
   display: grid;
-  gap: 12px;
+  gap: 14px;
 }
 
 .office-agents-agenda-item,
@@ -8387,10 +8392,10 @@ a {
   align-items: flex-start;
   justify-content: space-between;
   gap: 14px;
-  padding: 12px 14px;
+  padding: 14px 16px;
   border: 1px solid var(--office-border);
   border-radius: 12px;
-  background: var(--office-bg-muted);
+  background: var(--office-surface);
 }
 
 .office-agents-agenda-item p,
@@ -8712,30 +8717,44 @@ a {
 .office-settings-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--office-border);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--office-surface-subtle) 76%, white);
+}
+
+.office-settings-list-page {
+  gap: 20px;
 }
 
 .office-settings-nav-link {
   display: inline-flex;
   align-items: center;
-  min-height: 36px;
-  padding: 0 14px;
+  min-height: 40px;
+  padding: 0 16px;
   border: 1px solid var(--office-border);
-  border-radius: 999px;
-  background: var(--office-surface-subtle);
+  border-radius: 10px;
+  background: var(--office-surface);
   color: var(--office-text-muted);
   font-size: 0.84rem;
-  font-weight: 600;
+  font-weight: 700;
   transition:
     border-color 120ms ease,
     color 120ms ease,
     background-color 120ms ease;
 }
 
+.office-settings-nav-link:hover {
+  border-color: var(--office-border-strong);
+  background: var(--office-surface-muted);
+  color: var(--office-text);
+}
+
 .office-settings-nav-link.is-active {
-  border-color: var(--office-accent);
-  background: var(--office-accent-soft);
+  border-color: var(--office-border-strong);
+  background: color-mix(in srgb, var(--office-accent-soft) 58%, white);
   color: var(--office-accent-strong);
 }
 
@@ -8744,12 +8763,24 @@ a {
 .office-settings-card-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
+  gap: 14px;
 }
 
 .office-settings-section-grid,
 .office-settings-card-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.office-settings-section-grid > .office-section-card,
+.office-settings-card-grid > .office-section-card {
+  height: 100%;
+}
+
+.office-settings-section-grid > .office-section-card .office-section-body,
+.office-settings-card-grid > .office-section-card .office-section-body {
+  display: grid;
+  gap: 16px;
 }
 
 .office-settings-copy {
@@ -8762,9 +8793,13 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: var(--office-accent);
+  color: var(--office-accent-strong);
   font-size: 0.88rem;
   font-weight: 700;
+}
+
+.office-settings-link:hover {
+  text-decoration: underline;
 }
 
 .office-inline-error {
@@ -8881,7 +8916,7 @@ a {
   padding: 8px 10px;
   border: 1px solid var(--office-border);
   border-radius: 999px;
-  background: var(--office-surface-subtle);
+  background: var(--office-surface);
   font-size: var(--office-text-meta-size);
 }
 
@@ -8916,7 +8951,7 @@ a {
   padding: 10px 12px;
   border: 1px solid var(--office-border);
   border-radius: 12px;
-  background: var(--office-surface-subtle);
+  background: var(--office-surface);
 }
 
 .office-settings-actions {
@@ -8949,8 +8984,8 @@ a {
   gap: 12px;
   padding: 14px;
   border: 1px solid var(--office-border);
-  border-radius: 14px;
-  background: var(--office-surface-subtle);
+  border-radius: 12px;
+  background: var(--office-surface);
 }
 
 .office-settings-template-item-grid {
@@ -9254,14 +9289,16 @@ a {
 .office-account-page .office-section-card,
 .office-billing-page .office-section-card,
 .office-accounting-list-page .office-section-card,
-.office-library-page .office-section-card {
+.office-library-page .office-section-card,
+.office-settings-list-page .office-section-card {
   border-radius: 12px;
+  background: color-mix(in srgb, var(--office-surface) 92%, white);
 }
 
 .office-account-page .office-account-summary-grid,
 .office-billing-page .office-billing-summary-grid,
 .office-agent-profile-page .office-agents-kpi-grid {
-  gap: 12px;
+  gap: 14px;
 }
 
 .office-agent-profile-page .office-note-item,
@@ -9269,6 +9306,110 @@ a {
 .office-billing-page .office-billing-notice,
 .office-library-page .office-note-item {
   border-radius: 12px;
+}
+
+.office-accounting-list-page {
+  gap: 20px;
+}
+
+.office-accounting-list-page .office-section-nav {
+  margin-bottom: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--office-border);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--office-surface-subtle) 76%, white);
+}
+
+.office-accounting-list-page .office-section-nav a {
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+  background: var(--office-surface);
+}
+
+.office-accounting-list-page .office-section-nav a:hover {
+  background: var(--office-surface-muted);
+}
+
+.office-accounting-kpi-grid {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+}
+
+.office-accounting-filters {
+  gap: 14px;
+}
+
+.office-accounting-workspace {
+  grid-template-columns: minmax(0, 1.45fr) minmax(340px, 0.95fr);
+  gap: 22px;
+}
+
+.office-accounting-main-column,
+.office-accounting-side-column {
+  gap: 20px;
+}
+
+.office-accounting-list-page .office-list-card {
+  gap: 18px;
+}
+
+.office-accounting-panel,
+.office-accounting-panel-shell {
+  display: grid;
+  gap: 20px;
+}
+
+.office-accounting-panel .bm-accounting-grid {
+  gap: 22px;
+}
+
+.office-accounting-panel .office-kpi-grid-compact {
+  gap: 14px;
+}
+
+.office-accounting-panel .office-side-stack {
+  gap: 20px;
+}
+
+.office-accounting-panel .bm-accounting-line-items {
+  border-color: var(--office-border);
+  border-radius: 12px;
+  background: var(--office-surface);
+}
+
+.office-accounting-panel .bm-accounting-inline-actions {
+  gap: 8px;
+}
+
+.office-accounting-panel .bm-accounting-empty {
+  padding: 18px;
+  border: 1px dashed var(--office-border);
+  border-radius: 12px;
+  background: var(--office-surface-muted);
+  color: var(--office-text-muted);
+}
+
+.office-accounting-panel .bm-agent-statement {
+  gap: 16px;
+}
+
+.office-accounting-panel .bm-agent-statement-metrics {
+  gap: 14px;
+}
+
+.office-accounting-panel .bm-agent-statement-metrics div {
+  border: 1px solid var(--office-border);
+  border-radius: 12px;
+  background: var(--office-surface);
+}
+
+.office-accounting-panel .bm-agent-statement-metrics span {
+  color: var(--office-text-muted);
+}
+
+.office-accounting-panel .bm-agent-statement-metrics strong {
+  color: var(--office-text);
 }
 
 @media (max-width: 1120px) {
@@ -9339,7 +9480,7 @@ a {
 
 .office-account-page {
   display: grid;
-  gap: 18px;
+  gap: 20px;
 }
 
 .office-account-summary-grid {
@@ -9351,14 +9492,14 @@ a {
 .office-account-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.65fr) minmax(320px, 1fr);
-  gap: 18px;
+  gap: 22px;
   align-items: start;
 }
 
 .office-account-main-column,
 .office-account-side-column {
   display: grid;
-  gap: 18px;
+  gap: 20px;
 }
 
 .office-account-page .office-page-actions,
@@ -9384,10 +9525,10 @@ a {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 16px;
+  padding: 18px;
   border: 1px solid var(--office-border);
-  border-radius: var(--office-radius-md);
-  background: var(--office-surface-muted);
+  border-radius: 12px;
+  background: var(--office-surface-subtle);
 }
 
 .office-account-avatar-image,
@@ -9464,8 +9605,8 @@ a {
   gap: 14px;
   padding: 14px 16px;
   border: 1px solid var(--office-border);
-  border-radius: var(--office-radius-md);
-  background: #ffffff;
+  border-radius: 10px;
+  background: var(--office-surface);
 }
 
 .office-account-team-row strong,
@@ -9493,8 +9634,8 @@ a {
   align-items: start;
   padding: 14px 16px;
   border: 1px solid var(--office-border);
-  border-radius: var(--office-radius-md);
-  background: #ffffff;
+  border-radius: 10px;
+  background: var(--office-surface);
 }
 
 .office-account-toggle input {
@@ -9526,10 +9667,14 @@ a {
   flex-wrap: wrap;
 }
 
+.office-billing-page {
+  gap: 20px;
+}
+
 .office-billing-summary-grid {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 12px;
+  gap: 14px;
 }
 
 .office-billing-page .office-page-actions,
@@ -9548,16 +9693,16 @@ a {
 .office-billing-method-list,
 .office-billing-activity-list {
   display: grid;
-  gap: 12px;
+  gap: 14px;
 }
 
 .office-billing-notice {
   display: grid;
   gap: 6px;
-  padding: 14px 16px;
+  padding: 16px 18px;
   border: 1px solid var(--office-border);
-  border-radius: var(--office-radius-md);
-  background: #ffffff;
+  border-radius: 12px;
+  background: var(--office-surface);
 }
 
 .office-billing-notice strong {
@@ -9574,8 +9719,12 @@ a {
 }
 
 .office-billing-notice-accent {
-  border-color: color-mix(in srgb, var(--office-accent) 26%, #ffffff);
-  background: linear-gradient(180deg, #f6faff 0%, #eef4ff 100%);
+  border-color: var(--office-border-strong);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--office-accent-soft) 62%, white) 0%,
+    color-mix(in srgb, var(--office-surface-subtle) 84%, white) 100%
+  );
 }
 
 .office-billing-notice-warning {
@@ -9591,14 +9740,14 @@ a {
 .office-billing-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.65fr) minmax(320px, 1fr);
-  gap: 18px;
+  gap: 22px;
   align-items: start;
 }
 
 .office-billing-main-column,
 .office-billing-side-column {
   display: grid;
-  gap: 18px;
+  gap: 20px;
 }
 
 .office-billing-subhead {
@@ -9643,8 +9792,8 @@ a {
   gap: 14px;
   padding: 14px 16px;
   border: 1px solid var(--office-border);
-  border-radius: var(--office-radius-md);
-  background: #ffffff;
+  border-radius: 12px;
+  background: var(--office-surface);
 }
 
 .office-billing-list-copy,
@@ -9711,6 +9860,13 @@ a {
 
 .office-billing-limitations li + li {
   margin-top: 8px;
+}
+
+@media (max-width: 1240px) {
+  .office-accounting-workspace,
+  .office-library-browser-sheet {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 1360px) {
@@ -10328,9 +10484,15 @@ a {
 }
 
 .office-library-toolbar-card {
-  gap: 14px;
+  gap: 16px;
   min-width: 0;
   max-width: 100%;
+  padding: 18px 20px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--office-surface) 92%, white) 0%,
+    color-mix(in srgb, var(--office-surface-subtle) 82%, white) 100%
+  );
 }
 
 .office-library-toolbar-top {
@@ -10338,7 +10500,9 @@ a {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--office-border);
 }
 
 .office-library-stats {
@@ -10390,9 +10554,9 @@ a {
 }
 
 .office-library-browser-sheet {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.38fr) minmax(300px, 0.92fr);
+  gap: 20px 24px;
   min-width: 0;
 }
 
@@ -10419,6 +10583,9 @@ a {
   align-items: flex-start;
   justify-content: space-between;
   gap: 14px;
+  grid-column: 1 / -1;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--office-border);
 }
 
 .office-library-browser-head h3 {
@@ -10438,26 +10605,26 @@ a {
 .office-library-folder-tree {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   min-width: 0;
 }
 
 .office-library-folder-group {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 8px;
 }
 
 .office-library-folder-branch {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .office-library-folder-node {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 8px;
 }
 
 .office-library-folder-row {
@@ -10500,15 +10667,15 @@ a {
 
 .office-library-folder-button {
   width: 100%;
-  border: 1px solid transparent;
-  border-radius: var(--office-radius-md);
-  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--office-border) 88%, white);
+  border-radius: 10px;
+  background: var(--office-surface);
   color: var(--office-text);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
-  padding: 8px 10px;
+  gap: 10px;
+  padding: 10px 12px;
   cursor: pointer;
   text-align: left;
 }
@@ -10522,7 +10689,7 @@ a {
 
 .office-library-folder-button-root {
   border: 1px solid var(--office-border);
-  background: white;
+  background: var(--office-surface);
 }
 
 .office-library-folder-button-main {
@@ -10560,20 +10727,20 @@ a {
   border-left: 1px solid color-mix(in srgb, var(--office-border) 78%, transparent);
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 8px;
 }
 
 .office-library-document-entry {
   width: 100%;
   border: 1px solid transparent;
-  border-radius: var(--office-radius-md);
-  background: white;
+  border-radius: 10px;
+  background: var(--office-surface);
   color: var(--office-text);
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: flex-start;
-  gap: 8px;
-  padding: 7px 9px;
+  gap: 10px;
+  padding: 10px 12px;
   cursor: pointer;
   text-align: left;
 }
@@ -10639,7 +10806,7 @@ a {
   margin: 2px 0 2px 30px;
   padding: 12px 14px;
   border: 1px dashed var(--office-border);
-  border-radius: var(--office-radius-md);
+  border-radius: 10px;
   background: var(--office-surface-muted);
   display: flex;
   flex-direction: column;
@@ -10659,8 +10826,11 @@ a {
 .office-library-folder-settings {
   display: grid;
   gap: 14px;
-  padding-top: 16px;
-  border-top: 1px solid var(--office-border);
+  align-self: start;
+  padding: 18px;
+  border: 1px solid var(--office-border);
+  border-radius: 12px;
+  background: var(--office-surface-subtle);
 }
 
 .office-library-side-form {
@@ -10702,7 +10872,7 @@ a {
   height: 38px;
   border: 1px solid var(--office-border);
   border-radius: var(--office-radius-md);
-  background: white;
+  background: var(--office-surface);
   color: var(--office-text);
   font-size: 1.35rem;
   line-height: 1;
@@ -10735,7 +10905,11 @@ a {
   border: 1px solid var(--office-border);
   border-radius: var(--office-radius-md);
   overflow: hidden;
-  background: linear-gradient(180deg, #f7f8fb 0%, #eef1f5 100%);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--office-surface) 88%, white) 0%,
+    color-mix(in srgb, var(--office-surface-subtle) 84%, white) 100%
+  );
 }
 
 .office-library-preview-frame {
@@ -10743,7 +10917,7 @@ a {
   width: 100%;
   min-height: 520px;
   border: 0;
-  background: white;
+  background: var(--office-surface);
 }
 
 .office-library-preview-frame-wrap-modal {
