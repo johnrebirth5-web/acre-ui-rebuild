@@ -187,6 +187,41 @@ select {
   max-width: 460px;
 }
 
+.auth-company-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.auth-company-card {
+  display: flex;
+  align-items: center;
+  min-height: 68px;
+  padding: 18px 20px;
+  border: 1px solid rgba(205, 191, 174, 0.74);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(255, 252, 248, 0.9) 0%, rgba(247, 241, 233, 0.94) 100%);
+  transition: border-color 120ms ease, background-color 120ms ease, transform 120ms ease;
+}
+
+.auth-company-card span {
+  color: var(--text);
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.auth-company-card:hover,
+.auth-company-card:focus-visible {
+  border-color: rgba(56, 58, 57, 0.22);
+  background: rgba(255, 252, 248, 0.98);
+  transform: translateY(-1px);
+}
+
+.auth-company-card-selected {
+  border-color: rgba(56, 58, 57, 0.28);
+  background: linear-gradient(180deg, rgba(242, 233, 221, 0.94) 0%, rgba(250, 245, 239, 0.98) 100%);
+}
+
 .auth-hero-metric {
   display: grid;
   gap: 5px;
@@ -340,6 +375,7 @@ select {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .auth-submit {
@@ -368,6 +404,34 @@ select {
 
 .auth-form-helper {
   font-size: 0.84rem;
+}
+
+.auth-secondary-link {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.auth-secondary-link:hover,
+.auth-secondary-link:focus-visible {
+  color: var(--text);
+}
+
+.auth-empty-state {
+  display: grid;
+  gap: 10px;
+  padding-top: 2px;
+}
+
+.auth-empty-state strong {
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.auth-empty-state p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
 }
 
 .auth-demo-card {

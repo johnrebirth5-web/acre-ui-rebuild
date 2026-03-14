@@ -2,16 +2,40 @@ import { activityLogActions, prisma, recordActivityLogEvent } from "@acre/db";
 import { getDefaultAppPath } from "@acre/auth";
 import { NextRequest, NextResponse } from "next/server";
 import { authenticateSeededUser, createSessionCookieValue, getSessionCookieName, getSessionCookieSettings } from "../../../../lib/auth-session";
+import { parseLoginCompanyKey } from "../../../../lib/login-companies";
 import { getRequestOrigin } from "../../../../lib/request-origin";
 
 export async function POST(request: NextRequest) {
   const requestOrigin = getRequestOrigin(request);
   const formData = await request.formData();
-  const email = String(formData.get("email") ?? "").trim().toLowerCase();
-  const context = await authenticateSeededUser(email);
+  const username = String(formData.get("username") ?? "").trim().toLowerCase();
+  const password = String(formData.get("password") ?? "").trim();
+  const company = parseLoginCompanyKey(String(formData.get("company") ?? "").trim());
+
+  if (company === null || username !== "admin" || password !== "admin") {
+    const nextUrl = company ? `/login?company=${company}&error=invalid_credentials` : "/login?error=invalid_credentials";
+
+    return NextResponse.redirect(new URL(nextUrl, requestOrigin), 303);
+  }
+
+  const adminMembership = await prisma.membership.findFirst({
+    where: {
+      status: "active",
+      role: "office_admin",
+      user: {
+        isActive: true
+      }
+    },
+    include: {
+      user: true
+    },
+    orderBy: [{ createdAt: "asc" }]
+  });
+
+  const context = adminMembership ? await authenticateSeededUser(adminMembership.user.email) : null;
 
   if (!context) {
-    return NextResponse.redirect(new URL("/login?error=invalid_email", requestOrigin), 303);
+    return NextResponse.redirect(new URL(`/login?company=${company}&error=invalid_credentials`, requestOrigin), 303);
   }
 
   await recordActivityLogEvent(prisma, {
