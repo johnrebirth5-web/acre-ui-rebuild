@@ -1,4 +1,4 @@
-import { getDefaultAppPath, getRoleSummary } from "@acre/auth";
+import { getDefaultAppPath } from "@acre/auth";
 import { getSeededWorkspaceSnapshot } from "@acre/db";
 import { getCurrentSessionContext, shouldShowSeededUsers } from "../../lib/auth-session";
 import { redirect } from "next/navigation";
@@ -18,7 +18,6 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
 
   const params = searchParams ? await searchParams : undefined;
   const seededWorkspace = shouldShowSeededUsers() ? await getSeededWorkspaceSnapshot().catch(() => null) : null;
-  const featuredMemberships = seededWorkspace?.memberships.slice(0, 3) ?? [];
   const workspaceLabel = seededWorkspace?.office?.name ?? seededWorkspace?.organization.name ?? "Acre";
 
   return (
@@ -35,7 +34,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
             <article className="auth-hero-metric auth-hero-metric-accent">
               <span>Office</span>
               <strong>{workspaceLabel}</strong>
-              <p>{seededWorkspace?.memberships.length ?? 0} quick sign-ins available</p>
+              <p>{seededWorkspace?.organization.name ?? "Acre NY Realty"}</p>
             </article>
           </div>
         </section>
@@ -50,12 +49,12 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           <form action="/api/auth/login" className="auth-form" method="post">
             <label className="auth-field">
               <span>Email</span>
-              <input autoComplete="email" defaultValue="simon@acre.com" name="email" placeholder="jane@acre.com" type="email" />
+              <input autoComplete="email" name="email" placeholder="name@acre.com" type="email" />
             </label>
 
             {params?.error ? <p className="auth-error">We couldn't find an active account with that email.</p> : null}
 
-            <p className="auth-form-helper">Enter your office email, or use one of the quick sign-ins below.</p>
+            <p className="auth-form-helper">Enter your office email to continue.</p>
 
             <div className="auth-actions">
               <button className="auth-submit" type="submit">
@@ -63,30 +62,6 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
               </button>
             </div>
           </form>
-
-          {seededWorkspace ? (
-            <section className="auth-demo-card">
-              <div className="auth-demo-card-copy">
-                <strong>Quick sign-in</strong>
-                <p>Choose a common office profile to enter quickly.</p>
-              </div>
-
-              <div className="auth-user-grid">
-                {featuredMemberships.map((membership) => (
-                  <form action="/api/auth/login" className="auth-user-card" key={membership.membershipId} method="post">
-                    <input name="email" type="hidden" value={membership.email} />
-                    <div className="auth-user-card-copy">
-                      <span>{getRoleSummary(membership.role).label}</span>
-                      <strong>{membership.fullName}</strong>
-                    </div>
-                    <button className="auth-user-card-action" type="submit">
-                      Continue
-                    </button>
-                  </form>
-                ))}
-              </div>
-            </section>
-          ) : null}
         </section>
       </section>
     </main>
