@@ -29,8 +29,8 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         <section className="auth-hero">
           <div className="auth-hero-copy">
             <span className="auth-eyebrow">Acre System</span>
-            <h1>Run the office with one calmer operating system.</h1>
-            <p>Transactions, accounting, documents, approvals, reporting, and agent operations now live inside one cleaner back-office workspace.</p>
+            <h1>A calmer operating system for the office.</h1>
+            <p>Transactions, accounting, approvals, reporting, and agent operations now sit inside one warmer, more composed back-office workspace.</p>
           </div>
 
           <div className="auth-hero-metrics">
@@ -44,18 +44,13 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
               <strong>{seededWorkspace?.memberships.length ?? 0}</strong>
               <p>{uniqueRoles.length} active role types</p>
             </article>
-            <article className="auth-hero-metric">
-              <span>Access mode</span>
-              <strong>Local</strong>
-              <p>No password required in seeded preview mode</p>
-            </article>
           </div>
 
           {featuredMemberships.length > 0 ? (
             <section className="auth-quick-access">
               <div className="auth-quick-access-copy">
                 <strong>Quick local access</strong>
-                <p>Use one-click seeded accounts to jump straight into the current rebuild preview.</p>
+                <p>Use seeded accounts to enter the rebuild preview instantly without a production password flow.</p>
               </div>
 
               <div className="auth-user-grid">
@@ -80,8 +75,8 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         <section className="auth-panel">
           <div className="auth-card-copy">
             <span className="auth-eyebrow">Local Access</span>
-            <h2>Sign in to the rebuild preview</h2>
-            <p>Use any active office membership email to create a local Acre session for the current Back Office workspace.</p>
+            <h2>Enter the rebuild preview</h2>
+            <p>Use any active office membership email to create a local Acre session for the current workspace snapshot.</p>
             <SiteReleaseBadge className="site-release-badge-auth" />
           </div>
 
@@ -105,7 +100,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           {seededWorkspace ? (
             <section className="auth-demo-card">
               <div className="auth-demo-card-copy">
-                <strong>Available local users</strong>
+                <strong>Preview directory</strong>
                 <p>All seeded memberships currently attached to this workspace snapshot.</p>
               </div>
               <ul>

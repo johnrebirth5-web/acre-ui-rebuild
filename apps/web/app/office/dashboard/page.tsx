@@ -95,12 +95,10 @@ export default async function OfficeDashboardPage() {
           <div className="office-dashboard-overview">
             <div className="office-dashboard-overview-top">
               <div className="office-dashboard-access-panel">
-                <span>Current operator</span>
-                <strong>
-                  {context.currentUser.firstName} {context.currentUser.lastName}
-                </strong>
+                <span>Current scope</span>
+                <strong>{officeScopeLabel}</strong>
                 <p>
-                  {access.label} · {access.permissionCount} permissions · {officeScopeLabel}
+                  {context.currentUser.firstName} {context.currentUser.lastName} · {access.label} · {access.permissionCount} permissions
                 </p>
               </div>
 
@@ -111,9 +109,14 @@ export default async function OfficeDashboardPage() {
                   <p>{snapshot.goal.currentValue}</p>
                 </article>
                 <article className="office-dashboard-highlight-card">
+                  <span>Live pipeline</span>
+                  <strong>{livePipelineCount}</strong>
+                  <p>Active and opportunity transactions still in motion.</p>
+                </article>
+                <article className="office-dashboard-highlight-card">
                   <span>Follow-ups due</span>
                   <strong>{snapshot.contactsNeedingFollowUp}</strong>
-                  <p>{snapshot.goal.secondaryValue} currently due</p>
+                  <p>{snapshot.goal.secondaryValue} currently due inside the office queue.</p>
                 </article>
               </div>
             </div>
