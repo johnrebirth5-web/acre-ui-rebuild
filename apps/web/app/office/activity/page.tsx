@@ -104,13 +104,13 @@ export default async function OfficeActivityPage(props: OfficeActivityPageProps)
       <PageHeader
         actions={
           <PageHeaderSummary>
+            <SummaryChip label="Office scope" value={context.currentOffice?.name ?? context.currentOrganization.name} />
+            <SummaryChip label="Audit window" tone="accent" value={snapshot.latestWindowCount} />
+            <SummaryChip label="Live alerts" value={snapshot.alerts.length} />
             <ActivityCommentComposer
               officeId={context.currentOffice?.id ?? null}
               scopeLabel={context.currentOffice?.name ?? context.currentOrganization.name}
             />
-            <SummaryChip label="Office scope" value={context.currentOffice?.name ?? context.currentOrganization.name} />
-            <SummaryChip label="Audit window" tone="accent" value={snapshot.latestWindowCount} />
-            <SummaryChip label="Live alerts" value={snapshot.alerts.length} />
           </PageHeaderSummary>
         }
         description="Audit-backed activity records remain the source of truth. Operational alerts are derived live from current transaction, task, and contact state."
@@ -205,7 +205,7 @@ export default async function OfficeActivityPage(props: OfficeActivityPageProps)
       <section className="bm-activity-layout">
         <aside className="bm-activity-nav-column">
           <SectionCard
-            className="office-activity-sections-card"
+            className="office-activity-sections-card office-activity-rail-card"
             subtitle="Counts in the latest 200-record audit window"
             title="Activity log"
           >
@@ -228,7 +228,7 @@ export default async function OfficeActivityPage(props: OfficeActivityPageProps)
           </SectionCard>
 
           <SectionCard
-            className="office-activity-sections-card"
+            className="office-activity-sections-card office-activity-rail-card"
             subtitle="Live alerts derived from current system state"
             title="Operational alerts"
           >
@@ -254,7 +254,7 @@ export default async function OfficeActivityPage(props: OfficeActivityPageProps)
         <div className="bm-activity-streams">
           {selectedView !== "alerts" ? (
             <SectionCard
-              className="office-activity-log-card"
+              className="office-activity-log-card office-activity-stream-card"
               subtitle={`Showing ${snapshot.activityEvents.length} audit records`}
               title={selectedView === "activity" ? snapshot.activitySelectedSectionLabel : "Activity log"}
             >
@@ -301,7 +301,7 @@ export default async function OfficeActivityPage(props: OfficeActivityPageProps)
 
           {selectedView !== "activity" ? (
             <SectionCard
-              className="office-activity-log-card office-alerts-card"
+              className="office-activity-log-card office-alerts-card office-activity-stream-card"
               subtitle={`Showing ${snapshot.alerts.length} current alerts`}
               title={selectedView === "alerts" ? snapshot.alertSelectedSectionLabel : "Operational alerts"}
             >

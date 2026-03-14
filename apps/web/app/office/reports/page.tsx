@@ -350,7 +350,11 @@ export default async function OfficeReportsPage(props: ReportsPageProps) {
         title="Reports"
       />
 
-      <ListPageSection subtitle="Shareable query-param filters across transactions, commissions, accounting, and EMD slices." title="Report filters">
+      <ListPageSection
+        className="office-reports-filter-card"
+        subtitle="Shareable query-param filters across transactions, commissions, accounting, and EMD slices."
+        title="Report filters"
+      >
         <ListPageFilters as="form" className="office-report-filters" method="get">
           <FilterField label="Start date">
             <TextInput defaultValue={snapshot.filters.startDate} name="startDate" type="date" />
@@ -429,7 +433,7 @@ export default async function OfficeReportsPage(props: ReportsPageProps) {
         </ListPageFilters>
       </ListPageSection>
 
-      <nav aria-label="Reports sections" className="office-section-nav">
+      <nav aria-label="Reports sections" className="office-section-nav office-reports-nav">
         <a href="#reports-scope">Scope</a>
         <a href="#reports-transactions">Transactions</a>
         <a href="#reports-agents">Agents</a>
@@ -440,6 +444,7 @@ export default async function OfficeReportsPage(props: ReportsPageProps) {
       </nav>
 
       <ListPageSection
+        className="office-reports-summary-card"
         subtitle="Top-level report totals stay query-param scoped and derived only from persisted transaction, commission, accounting, and EMD data."
         title="Report summary"
       >
