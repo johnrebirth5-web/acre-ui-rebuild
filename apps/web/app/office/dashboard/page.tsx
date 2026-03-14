@@ -115,24 +115,24 @@ export default async function OfficeDashboardPage() {
                   </article>
                 </div>
               </div>
+            </div>
 
-              <div className="office-dashboard-highlight-grid">
-                <article className="office-dashboard-highlight-card office-dashboard-highlight-card-accent">
-                  <span>Closed rate</span>
-                  <strong>{snapshot.goal.progressPercent}%</strong>
-                  <p>{snapshot.goal.currentValue}</p>
-                </article>
-                <article className="office-dashboard-highlight-card">
-                  <span>Live pipeline</span>
-                  <strong>{livePipelineCount}</strong>
-                  <p>Active and opportunity transactions still in motion.</p>
-                </article>
-                <article className="office-dashboard-highlight-card">
-                  <span>Follow-ups due</span>
-                  <strong>{snapshot.contactsNeedingFollowUp}</strong>
-                  <p>{snapshot.goal.secondaryValue} currently due inside the office queue.</p>
-                </article>
-              </div>
+            <div className="office-dashboard-highlight-grid">
+              <article className="office-dashboard-highlight-card office-dashboard-highlight-card-accent">
+                <span>Closed rate</span>
+                <strong>{snapshot.goal.progressPercent}%</strong>
+                <p>{snapshot.goal.currentValue}</p>
+              </article>
+              <article className="office-dashboard-highlight-card">
+                <span>Live pipeline</span>
+                <strong>{livePipelineCount}</strong>
+                <p>Active and opportunity transactions still in motion.</p>
+              </article>
+              <article className="office-dashboard-highlight-card">
+                <span>Follow-ups due</span>
+                <strong>{snapshot.contactsNeedingFollowUp}</strong>
+                <p>{snapshot.goal.secondaryValue} currently due inside the office queue.</p>
+              </article>
             </div>
 
             <ListPageStatsGrid className="office-dashboard-status-strip">

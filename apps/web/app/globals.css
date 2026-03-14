@@ -6950,14 +6950,11 @@ a {
 
 .office-dashboard-overview {
   display: grid;
-  gap: 18px;
+  gap: 12px;
 }
 
 .office-dashboard-overview-top {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.8fr);
-  gap: 16px;
-  align-items: start;
+  display: block;
 }
 
 .office-dashboard-access-panel,
@@ -6970,9 +6967,10 @@ a {
 
 .office-dashboard-access-panel {
   display: grid;
-  gap: 6px;
-  padding: 20px 22px;
+  gap: 8px;
+  padding: 18px 20px;
   background: linear-gradient(180deg, rgba(252, 248, 242, 0.96) 0%, rgba(244, 237, 228, 0.98) 100%);
+  align-self: start;
 }
 
 .office-dashboard-access-panel > span,
@@ -6997,7 +6995,7 @@ a {
 }
 
 .office-dashboard-access-panel strong {
-  font-size: 1.5rem;
+  font-size: 1.38rem;
   font-weight: 500;
 }
 
@@ -7005,8 +7003,8 @@ a {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
-  padding-top: 14px;
-  margin-top: 4px;
+  padding-top: 12px;
+  margin-top: 2px;
   border-top: 1px solid rgba(205, 191, 174, 0.72);
 }
 
@@ -7043,16 +7041,16 @@ a {
 
 .office-dashboard-highlight-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
 }
 
 .office-dashboard-highlight-card {
   display: grid;
-  gap: 6px;
+  gap: 4px;
   align-content: start;
-  min-height: 104px;
-  padding: 16px 18px;
+  min-height: 0;
+  padding: 14px 16px;
   background: rgba(253, 249, 243, 0.84);
 }
 
@@ -7064,7 +7062,7 @@ a {
 .office-dashboard-highlight-card strong {
   color: var(--office-text);
   font-family: var(--office-font-display);
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   line-height: 1;
   letter-spacing: -0.04em;
   font-weight: 500;
@@ -7073,10 +7071,11 @@ a {
 .office-dashboard-status-strip {
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 10px;
+  margin-top: 4px;
 }
 
 .office-dashboard-status-card {
-  min-height: 96px;
+  min-height: 88px;
   border-top: 2px solid var(--office-border-strong);
   border-radius: 8px;
   background: rgba(255, 253, 250, 0.7);
@@ -7371,21 +7370,18 @@ a {
 }
 
 @media (max-width: 1120px) {
-  .office-dashboard-overview-top,
   .office-dashboard-chart-layout {
     grid-template-columns: 1fr;
   }
 
+  .office-dashboard-highlight-grid,
   .office-dashboard-access-meta {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 720px) {
-  .office-dashboard-highlight-grid {
-    grid-template-columns: 1fr;
-  }
-
+  .office-dashboard-highlight-grid,
   .office-dashboard-access-meta {
     grid-template-columns: 1fr;
   }
