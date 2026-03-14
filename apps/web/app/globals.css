@@ -182,6 +182,11 @@ select {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.auth-hero-metrics-single {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 460px;
+}
+
 .auth-hero-metric {
   display: grid;
   gap: 5px;
