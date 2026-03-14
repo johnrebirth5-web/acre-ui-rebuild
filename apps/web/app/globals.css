@@ -7581,11 +7581,9 @@ a {
 }
 
 .office-activity-page .bm-activity-nav-column {
-  position: sticky;
-  top: 14px;
-  max-height: calc(100vh - 28px);
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  position: static;
+  max-height: none;
+  overflow: visible;
   gap: 14px;
 }
 
